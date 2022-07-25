@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Franklin Gothic Medium', sans-serif;
   margin: 0px;
 }
 
@@ -32,8 +32,8 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
+  background-color: gainsboro;
+  color:black;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -55,7 +55,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: lightgray;
   text-decoration: none;
 }
 
@@ -109,4 +109,22 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+@font-face {
+  font-family: 'Adler';
+  src:local('Adler'), url(../../Fonts/adler.ttf) format('truetype');
+}
+
+.CapitalizedFranklin {
+  color: red;
+  background-color: black;
+  writing-mode: vertical-lr;
+  float:right;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  padding-left: .25em;
+  padding-right: .25em;
+  height: 30%;
+  font-size: 40px;
 }

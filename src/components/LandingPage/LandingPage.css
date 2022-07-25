@@ -11,6 +11,7 @@ Grid
   /* defaults to 'flex-start' */
   justify-content: flex-start;
   align-items: flex-start;
+  float:right;
 }
 
 .grid-col {
@@ -78,3 +79,12 @@ Grid
   flex-basis: 100%;
   max-width: 100%;
 }
+
+
+
+#bruceMain {
+  position:relative;
+  height: 30em;
+  padding-left: 3em;
+}
+
