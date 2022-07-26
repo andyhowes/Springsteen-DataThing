@@ -12,6 +12,7 @@ Grid
   justify-content: flex-start;
   align-items: flex-start;
   float:right;
+  padding-right:35%;
 }
 
 .grid-col {
@@ -88,3 +89,6 @@ Grid
   padding-left: 3em;
 }
 
+li {
+  list-style: none;
+}

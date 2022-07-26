@@ -1,3 +1,9 @@
 .lyricsCap {
   font-family:'Franklin Gothic Medium', sans-serif;
 }
+
+#lyricsBox {
+  height: 22em;
+  overflow:auto;
+  float: right;
+}
