@@ -20,6 +20,7 @@ const store = createStore(
   rootReducer,
   // adds all middleware to our project including saga and logger
   applyMiddleware(...middlewareList),
+  // console.log('in createStore')      this triggers 7/26 3pm
 );
 
 // tells the saga middleware to use the rootSaga

@@ -32,8 +32,8 @@ function SongList() {
           {songs.map(song => {
             return (
               <section id="songsMap">
-              <div key={songs.song_id} onClick={()=>goToDetails(songs.id)}></div>
-              <h3>songs.song_name</h3>
+              <div key={songsStore.song_id} onClick={()=>goToDetails(songsStore.id)}></div>
+              <h3>songsStore.song_name</h3>
               </section>
             )
           })}
