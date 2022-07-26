@@ -6,33 +6,29 @@ import './SongList.css';
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function SongList() {
-  const [songs, setSongs] = useState('Songs');
+function SongList(props) {
+  // const [songs, setSongs] = useState('Songs');   //I don't think this is in play
   const dispatch = useDispatch();
   const songsStore = useSelector(store => store.songs);
   const history = useHistory();
 
   useEffect(() => {
-    dispatch({type: 'FETCH_SONGS'});
+    dispatch({type: 'SET_SONGS'});
   }, []);
 
   const goToDetails = (id) =>{
     history.push(`/Details/${id}`);
   }
 
-  const onLogin = (event) => {
-    history.push('/login');
-  };
-
   return (
     <div className="container">
       <h1 className="lyricsCap">SONGS</h1>
       <div id="lyricsBox">
         <ul id="lyricsList">
-          {songs.map(song => {
+          {songsStore.map(song => {
             return (
               <section id="songsMap">
-              <div key={songsStore.song_id} onClick={()=>goToDetails(songsStore.id)}></div>
+              <div key={songsStore.song_id} onClick={()=>goToDetails(songsStore.id)}>{songsStore.song_name}</div>
               <h3>songsStore.song_name</h3>
               </section>
             )

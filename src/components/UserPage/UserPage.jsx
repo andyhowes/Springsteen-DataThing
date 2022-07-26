@@ -16,3 +16,7 @@ function UserPage() {
 
 // this allows us to use <App /> in index.js
 export default UserPage;
+
+//Add User's chosen fragments
+//Add User's customized songs list
+//Link to work on new song, or click old song to continue

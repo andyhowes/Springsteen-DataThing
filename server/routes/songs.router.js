@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/songs', (req, res) => {
   // POST route code here
 });
 
