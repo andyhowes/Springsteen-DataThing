@@ -3,7 +3,8 @@
 }
 
 #lyricsBox {
-  height: 15em;
-  overflow:auto;
+  height: 20em;
+  overflow:scroll;
   float: right;
+  width:max-content;
 }
