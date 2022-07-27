@@ -3,8 +3,6 @@ const songsReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_SONGS':
       return action.payload;
-    // case 'UNSET_SONGS':
-    //   return {};
     default:
       return state;
   }

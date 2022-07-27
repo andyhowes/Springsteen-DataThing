@@ -6,14 +6,13 @@ import './SongList.css';
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function SongList(props) {
-  // const [songs, setSongs] = useState('Songs');   //I don't think this is in play
+function SongList() {
+  //const [songs, setSongs] = useState('Songs');   //I don't think this is in play
   const dispatch = useDispatch();
   const songsStore = useSelector(store => store.songs);
   const history = useHistory();
-
   useEffect(() => {
-    dispatch({type: 'SET_SONGS'});
+    dispatch({type: 'FETCH_SONGS'});
   }, []);
 
   const goToDetails = (id) =>{
@@ -27,10 +26,7 @@ function SongList(props) {
         <ul id="lyricsList">
           {songsStore.map(song => {
             return (
-              <section id="songsMap">
-              <div key={songsStore.song_id} onClick={()=>goToDetails(songsStore.id)}>{songsStore.song_name}</div>
-              <h3>songsStore.song_name</h3>
-              </section>
+              <li className="songSingle" key={(song.song_id).toString()} onClick={()=>goToDetails(song.id)}>{song.song_name}</li>
             )
           })}
         </ul>
