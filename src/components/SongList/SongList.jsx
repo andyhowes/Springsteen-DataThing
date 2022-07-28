@@ -11,12 +11,13 @@ function SongList() {
   const dispatch = useDispatch();
   const songsStore = useSelector(store => store.songs);
   const history = useHistory();
+
   useEffect(() => {
     dispatch({type: 'FETCH_SONGS'});
   }, []);
 
   const goToDetails = (id) =>{
-    history.push(`/Details/${id}`);
+    history.push(`/details/${id}`);
   }
 
   return (
@@ -25,8 +26,9 @@ function SongList() {
       <div id="lyricsBox">
         <ul id="lyricsList">
           {songsStore.map(song => {
+
             return (
-              <li className="songSingle" key={(song.song_id).toString()} onClick={()=>goToDetails(song.id)}>{song.song_name}</li>
+              <li className="songSingle" key={(song.song_id).toString()} onClick={()=>goToDetails(song.song_id)}>{song.song_name}</li>
             )
           })}
         </ul>
