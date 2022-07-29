@@ -1,4 +1,4 @@
-const oneSongReducer = (state = [], action) => {
+const oneSongReducer = (state = {}, action) => {
   console.log('in oneSongReducer', action.payload);
   switch (action.type) {
     case 'SET_ONE_SONG':
@@ -8,6 +8,4 @@ const oneSongReducer = (state = [], action) => {
   }
 };
 
-// user will be on the redux state at:
-// state.user
 export default oneSongReducer;

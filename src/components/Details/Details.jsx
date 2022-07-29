@@ -9,8 +9,8 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 function Details(props) {
 
   const dispatch = useDispatch();
-  const songsStore = useSelector(store => store.songs);
-  console.log('songstore', songsStore);
+  const oneSongStore = useSelector(store => store.oneSong);
+  console.log('songstore', oneSongStore);
   const history = useHistory();
 
   useEffect(() => {
@@ -18,17 +18,24 @@ function Details(props) {
   }, []);
 
   const {id} = useParams();
-  const song = songsStore[id];
+  console.log(id);
+  const song = oneSongStore[(id - 1)];
+
   const goToSongs = () =>{
-    history.push(`/SongsList`);
+    history.push(`/`);
   }
 
   return (
     <div className="container">
-      <h1 className="songCap">{song.song_name}</h1>
+      {oneSongStore.length === 0 ? (<p>...loading...</p>) :
+      (<section><h1 className="songCap">{song.song_name}</h1>
       <div id="songBox">
         <h4 className="songLyrics" key={(song.song_id.toString())} onClick={console.log('beep')}>{song.song_lyrics}</h4>
+      <button id="backButton" onClick={goToSongs}>Back</button>
       </div>
+
+      </section>)
+      }
     </div>
   )
 }
