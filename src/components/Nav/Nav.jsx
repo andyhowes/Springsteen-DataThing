@@ -28,8 +28,8 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/info">
-              Details
+            <Link className="navLink" to="/lines">
+              Song Lines
             </Link>
 
             <LogOutButton className="navLink" />

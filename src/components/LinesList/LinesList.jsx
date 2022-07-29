@@ -9,7 +9,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 function LinesList() {
   //const [songs, setSongs] = useState('Songs');   //I don't think this is in play
   const dispatch = useDispatch();
-  const linesStore = useSelector(store => store.fragments);
+  const linesStore = useSelector(store => store.lyrics_fragments);
   const history = useHistory();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function LinesList() {
 
   return (
     <div className="container">
-      <h1 className="lyricsCap">LINES</h1>
+      <h1 className="linesCap">LINES</h1>
       <div id="linesBox">
         <ul id="lineList">
           {linesStore.map(line => {
