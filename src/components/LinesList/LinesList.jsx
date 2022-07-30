@@ -27,8 +27,8 @@ function LinesList() {
       <section><div id="linesBox">
         <table id="lineList">
         <tr>
-          <th>Album</th>
-          <th>Song</th>
+          <th id="albumHeader">Album</th>
+          <th id="songHeader">Song</th>
           <th>Lyric</th>
         </tr>
           {linesStore.map(line => {

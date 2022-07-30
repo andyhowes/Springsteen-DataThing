@@ -3,11 +3,19 @@
 }
 
 #linesBox {
-  height: 20em;
+  height: 25em;
   overflow:scroll;
-  width:max-content;
+  width: 50%;
 }
 
 table, th, td {
   border: 1px solid;
+}
+
+#songHeader {
+  width: 34%;
+}
+
+#albumHeader {
+  width: 22%;
 }
