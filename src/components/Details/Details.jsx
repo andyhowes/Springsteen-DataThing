@@ -21,8 +21,8 @@ function Details(props) {
   console.log(id);
   const song = oneSongStore[(id - 1)];
 
-  let lineBrokenSong = (song.song_lyrics).replace("\n", ' . .    ');
-
+  let lineBrokenSong = (song.song_lyrics).split('<<<<>>>><<<<>>>>').join('\n\n').split('<<<<>>>>').join('\n');
+  console.log('LBS', lineBrokenSong)
   const goToSongs = () =>{
     history.push(`/`);
   }
@@ -32,7 +32,7 @@ function Details(props) {
       {oneSongStore.length === 0 ? (<p>...loading...</p>) :
       (<section><h1 className="songCap">{song.song_name}</h1>
       <div id="songBox">
-        <h4 className="songLyrics" key={(song.song_id.toString())} onClick={console.log('beep')}>{lineBrokenSong}</h4>
+        <pre className="songLyrics" key={(song.song_id.toString())} onClick={console.log('beep')}>{lineBrokenSong}</pre>
       <button id="backButton" onClick={goToSongs}>Back</button>
       </div>
 
