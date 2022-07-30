@@ -4,7 +4,12 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-  const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON songs.album_id = albums.album_id ORDER BY lyrics_fragments.song_id ASC`;
+  const query =
+  `SELECT * FROM saved_fragments
+  JOIN lyrics_fragments
+  ON lyrics_fragments.fragment_id = saved_fragments.fragment_id
+  JOIN users ON saved_fragments.user_id = users.id
+  ORDER BY saved_fragments.fragment_id ASC`;
   pool.query(query)
     .then( result => {
       res.send(result.rows);
@@ -15,7 +20,11 @@ router.get('/', (req, res) => {
     })
 });
 
-// router.get('/song_of_lines:id', (req, res) => {
+router.post('/', (req, res) => {
+  // POST route code here
+});
+
+// router.get('/fragments:id', (req, res) => {
 //   const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON albums.album_id = songs.album_id WHERE lyric_fragments.song_id=$1`;
 //   const values = [req.params.id];
 //   pool.query(query, values)
@@ -32,11 +41,5 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/songs', (req, res) => {
-  // POST route code here
-});
 
 module.exports = router;
-
-
-//JOIN songs ON lyrics_fragments.song_id = songs.song_id

@@ -19,6 +19,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import LinesList from '../LinesList/LinesList';
+import SongOfLines from '../SongOfLines/SongOfLines';
 
 import './App.css';
 
@@ -88,6 +89,20 @@ function App() {
               // Otherwise, show the registration page
               <RegisterPage />
             }
+          </Route>
+
+          <Route
+            exact
+            path="/song_of_lines/:id"
+            >
+            <SongOfLines />
+            {/* {user.id ?
+
+              <Redirect to="/user" />
+              :
+
+              <LandingPage />
+            } */}
           </Route>
 
           <Route

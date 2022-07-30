@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const songsRouter = require('./routes/songs.router');
 const linesListRouter = require('./routes/lines_list.router');
+const songOfLinesRouter = require('./routes/song_of_lines.router');
 // const oneSongRouter = require('./routes/one_song.router')
 
 // Body parser middleware
@@ -27,7 +28,8 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/songs', songsRouter);
-app.use('/api/lines_list', linesListRouter)
+app.use('/api/lines_list', linesListRouter);
+app.use('/api/song_of_lines', songOfLinesRouter);
 // app.use('/api/oneSong', oneSongRouter);
 // Serve static files
 app.use(express.static('build'));

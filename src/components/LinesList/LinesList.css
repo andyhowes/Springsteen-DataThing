@@ -1,5 +1,5 @@
 .linesCap {
-  font-family: 'Franklin Gothic Medium';
+  font-family: 'LibreFranklinBold';
 }
 
 #linesBox {
@@ -18,4 +18,22 @@ table, th, td {
 
 #albumHeader {
   width: 22%;
+}
+
+.addButton {
+  font-size:large;
+  text-align: center;
+  padding-left: 28.5%;
+  border: none;
+  background: none;
+}
+
+.addButton:hover {
+  color: #B44C4B;
+}
+
+.addButton:active {
+  font-size: larger;
+  color: red;
+  padding-left: 28%;
 }

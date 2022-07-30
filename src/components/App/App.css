@@ -116,6 +116,26 @@ input {
   src:local('Adler'), url(../../Fonts/adler.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'FranklinGothic';
+  src:local('FranklinGothic'), url(../../Fonts/FranklinGothic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'FrankGo';
+  src:local('FrankGo'), url(../../Fonts/FRANKGO.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LibreFranklinBold';
+  src:local('LibreFranklinBold'), url(../../Fonts/LibreFranklin-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'BodoniModa';
+  src:local('BodoniModa'), url(../../Fonts/BodoniModa.ttf) format('truetype');
+}
+
 .CapitalizedFranklin {
   color: red;
   background-color: black;
@@ -127,4 +147,5 @@ input {
   padding-right: .25em;
   height: 30%;
   font-size: 40px;
+  font-family: 'LibreFranklinBold';
 }
