@@ -30,12 +30,13 @@ function LinesList() {
           <th id="albumHeader">Album</th>
           <th id="songHeader">Song</th>
           <th>Lyric</th>
+          <th>Rhyme</th>
           <th>Add to Faves</th>
         </tr>
           {linesStore.map(line => {
 
             return (
-              <tr className="lineSingle" key={(line.fragment_id).toString()}><td> {line.album_name}</td> <td>{line.song_name}</td> <td>{line.fragment_text}</td><td><button className="addButton" onClick={()=>{addLine(line.fragment_id)}}>⨁</button></td></tr>
+              <tr className="lineSingle" key={(line.fragment_id).toString()}><td> {line.album_name}</td> <td>{line.song_name}</td> <td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="addButton" onClick={()=>{addLine(line.fragment_id)}}>⨁</button></td></tr>
             )
           })}
         </table>
