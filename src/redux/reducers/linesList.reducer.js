@@ -1,4 +1,4 @@
-const linesListReducer = (state = {}, action) => {
+const linesListReducer = (state = [], action) => {
   console.log('in linesListReducer', action.payload);
   switch (action.type) {
     case 'SET_LINES':

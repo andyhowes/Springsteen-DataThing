@@ -15,4 +15,4 @@ function* songsSaga() {
   yield takeLatest('FETCH_LINES', fetchLinesSaga);
 }
 
-export default fetchOneSongSaga;
+export default fetchLinesSaga;

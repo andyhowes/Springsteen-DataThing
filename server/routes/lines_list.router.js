@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-  const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON albums.album_id = songs.album_id ORDER BY "song_id" ASC`;
+  const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON songs.album_id = albums.album_id ORDER BY lyrics_fragments.song_id ASC`;
   pool.query(query)
     .then( result => {
       res.send(result.rows);
@@ -37,3 +37,6 @@ router.post('/songs', (req, res) => {
 });
 
 module.exports = router;
+
+
+//JOIN songs ON lyrics_fragments.song_id = songs.song_id

@@ -1,3 +1,13 @@
 .linesCap {
   font-family: 'Franklin Gothic Medium';
 }
+
+#linesBox {
+  height: 20em;
+  overflow:scroll;
+  width:max-content;
+}
+
+table, th, td {
+  border: 1px solid;
+}

@@ -14,7 +14,7 @@ function Details(props) {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch({type: 'FETCH_ONE_SONG'});
+    dispatch({type: 'FETCH_ONE_SONG', payload: id });
   }, []);
 
   const {id} = useParams();
