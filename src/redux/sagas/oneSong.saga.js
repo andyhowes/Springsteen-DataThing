@@ -11,8 +11,8 @@ function* fetchOneSongSaga() {
   }
 }
 
-function* songsSaga() {
+function* oneSongSaga() {
   yield takeLatest('FETCH_ONE_SONG', fetchOneSongSaga);
 }
 
-export default fetchOneSongSaga;
+export default oneSongSaga;

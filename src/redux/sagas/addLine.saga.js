@@ -1,16 +1,16 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* addLineSaga() {
+function* addLine(action) {
   try {
-    const response = yield axios.post('/api/addLine');
-    // yield put({ type: 'ADD_LINE', payload: response.data });
+    yield axios.post('/api/addLine', action.payload);
+    // yield put({ type: 'ADD_LINE', action.payload });
   } catch (error) {
     console.log('Request to add line failed', error);
   }
 }
 
-function* takeLatestAddLineSaga() {
+function* addLineSaga() {
   yield takeLatest('TRIGGER_ADD_LINE', addLineSaga);
 }
 

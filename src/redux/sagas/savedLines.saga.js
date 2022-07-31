@@ -15,4 +15,4 @@ function* savedLinesSaga() {
   yield takeLatest('FETCH_SAVED_LINES', fetchSavedLinesSaga);
 }
 
-export default fetchSavedLinesSaga;
+export default savedLinesSaga;

@@ -11,8 +11,8 @@ function* fetchsongOfLinesSaga() {
   }
 }
 
-function* songsSaga() {
+function* songOfLinesSaga() {
   yield takeLatest('FETCH_SONG_OF_LINES', fetchsongOfLinesSaga);
 }
 
-export default fetchsongOfLinesSaga;
+export default songOfLinesSaga;
