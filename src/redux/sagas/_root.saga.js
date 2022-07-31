@@ -5,7 +5,7 @@ import userSaga from './user.saga';
 import songsSaga from './songs.saga';
 import oneSongSaga from './oneSong.saga';
 import linesListSaga from './linesList.saga';
-import songOfLinesSaga from './songOfLines.saga';
+//import songOfLinesSaga from './songOfLines.saga';
 import addLineSaga from './addLine.saga';
 import savedLinesSaga from './savedLines.saga';
 
@@ -24,7 +24,7 @@ export default function* rootSaga() {
     songsSaga(),
     oneSongSaga(),
     linesListSaga(),
-    songOfLinesSaga(),
+    //songOfLinesSaga(),
     addLineSaga(),
     savedLinesSaga(),
   ]);

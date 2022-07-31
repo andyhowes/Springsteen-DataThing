@@ -5,7 +5,7 @@
 #linesBox {
   height: 25em;
   overflow:scroll;
-  width: 55%;
+  width: 100%;
 }
 
 table, th, td {
@@ -40,4 +40,6 @@ table, th, td {
 
 #savedLinesBox {
   float:left;
+  padding-left: 1em;
+  width:fit-content;
 }

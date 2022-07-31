@@ -32,7 +32,7 @@ app.use('/api/user', userRouter);
 app.use('/api/songs', songsRouter);
 app.use('/api/lines_list', linesListRouter);
 app.use('/api/add_line', addLineRouter);
-app.use('/api/song_of_lines', songOfLinesRouter);
+//app.use('/api/song_of_lines', songOfLinesRouter);
 app.use('/api/get_saved_lines', getSavedLinesRouter);
 // app.use('/api/oneSong', oneSongRouter);
 // Serve static files

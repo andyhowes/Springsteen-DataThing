@@ -15,9 +15,11 @@ function SavedLines() {
 
   console.log('store', useSelector(store => store));
 
+  const userID = userStore.id;
+
   useEffect(() => {
     setTimeout(() => {
-      dispatch({type: 'FETCH_SAVED_LINES', payload: userStore['id']});
+      dispatch({type: 'FETCH_SAVED_LINES', userID});    //, payload: userStore['id']
     }, 3000)
   }, []);
 
@@ -38,8 +40,6 @@ function SavedLines() {
         <table id="lineList">
           <thead>
             <tr>
-              <th id="albumHeader">Album</th>
-              <th id="songHeader">Song</th>
               <th>Lyric</th>
               <th>Rhyme</th>
               <th>Delete</th>
@@ -48,7 +48,7 @@ function SavedLines() {
           {linesStore.map(line => {
 
             return (
-              <tbody><tr className="lineSingle" key={(line.fragment_id)}><td>{line.album_name}</td><td>{line.song_name}</td><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></td></tr></tbody>
+              <tbody><tr className="lineSingle" key={(line.fragment_id)}><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></td></tr></tbody>
             )
           })}
         </table>

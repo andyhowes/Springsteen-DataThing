@@ -23,7 +23,7 @@ table, th, td {
 .addButton {
   font-size:large;
   text-align: center;
-  padding-left: 22.5%;
+  padding-left: 20.5%;
   border: none;
   background: none;
 }
@@ -35,5 +35,9 @@ table, th, td {
 .addButton:active {
   font-size: larger;
   color: red;
-  padding-left: 22%;
+  padding-left: 20%;
+}
+
+.container {
+  width: 60%;
 }
