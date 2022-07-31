@@ -8,6 +8,7 @@ import linesListSaga from './linesList.saga';
 //import songOfLinesSaga from './songOfLines.saga';
 import addLineSaga from './addLine.saga';
 import savedLinesSaga from './savedLines.saga';
+import editorSaga from './editor.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     //songOfLinesSaga(),
     addLineSaga(),
     savedLinesSaga(),
+    editorSaga(),
   ]);
 }

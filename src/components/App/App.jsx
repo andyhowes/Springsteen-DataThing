@@ -22,6 +22,7 @@ import LinesList from '../LinesList/LinesList';
 import SongOfLines from '../SongOfLines/SongOfLines';
 import SavedLines from '../SavedLines/SavedLines';
 import WorkPage from '../WorkPage/WorkPage';
+import EditorPane from '../EditorPane/EditorPane';
 
 import './App.css';
 
@@ -168,6 +169,20 @@ function App() {
           path="/workpage"
           >
             <WorkPage />
+          </Route>
+
+          <Route
+          exact
+          path="/editor"
+          >
+            <EditorPane />
+            {/* {user.id ?
+
+              <Redirect to="/user" />
+              :
+
+              <LandingPage />
+            } */}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

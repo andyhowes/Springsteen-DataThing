@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './WorkPage.css';
 import SavedLines from '../SavedLines/SavedLines';
+import EditorPane from '../EditorPane/EditorPane';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -22,7 +23,14 @@ function WorkPage() {
         </div>
 
       </div>
-      <SavedLines />
+      <section id="savedLinesBox">
+        <SavedLines />
+      </section>
+      <section id="editorPaneBox">
+        <EditorPane />
+      </section>
+
+
     </div>
   );
 }

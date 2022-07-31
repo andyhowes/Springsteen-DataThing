@@ -93,7 +93,11 @@ li {
   list-style:none;
 }
 
-#workBox {
+#savedLinesBox {
   float:left;
   padding-left: 2em;
+}
+
+#editorPaneBox {
+  float: right;
 }
