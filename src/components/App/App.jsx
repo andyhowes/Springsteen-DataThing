@@ -20,6 +20,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import LinesList from '../LinesList/LinesList';
 import SongOfLines from '../SongOfLines/SongOfLines';
+import SavedLines from '../SavedLines/SavedLines';
+import WorkPage from '../WorkPage/WorkPage';
 
 import './App.css';
 
@@ -92,9 +94,9 @@ function App() {
           </Route>
 
           <Route
-            exact
-            path="/song_of_lines/:id"
-            >
+          exact
+          path="/song_of_lines/:id"
+          >
             <SongOfLines />
             {/* {user.id ?
 
@@ -106,23 +108,23 @@ function App() {
           </Route>
 
           <Route
-            exact
-            path="/home"
+          exact
+          path="/home"
           >
-            {user.id ?
+            {/* {user.id ?
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            }
+              <Redirect to="/user" /> */}
+              {/* :
+              // Otherwise, show the Landing page */}
+            <LandingPage />
+            {/* } */}
           </Route>
 
           <Route
-            exact
-            path="/details/:id"
-            >
+          exact
+          path="/details/:id"
+          >
             <Details />
             {/* {user.id ?
 
@@ -134,18 +136,39 @@ function App() {
           </Route>
 
           <Route
-    exact
-    path="/lines"
-    >
-    <LinesList />
-    {/* {user.id ?
+          exact
+          path="/savedlines"
+          >
+            <SavedLines />
+            {/* {user.id ?
 
-      <Redirect to="/user" />
-      :
+              <Redirect to="/user" />
+              :
 
-      <LandingPage />
-    } */}
-  </Route>
+              <LandingPage />
+            } */}
+          </Route>
+
+          <Route
+          exact
+          path="/lines"
+          >
+            <LinesList />
+            {/* {user.id ?
+
+              <Redirect to="/user" />
+              :
+
+              <LandingPage />
+            } */}
+          </Route>
+
+          <Route
+          exact
+          path="/workpage"
+          >
+            <WorkPage />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
@@ -155,7 +178,6 @@ function App() {
         <Footer />
       </div>
     </Router>
-
   );
 }
 

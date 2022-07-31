@@ -3,8 +3,9 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import songs from './songs.reducer';
 import oneSong from './oneSong.reducer';
-import linesList from './linesList.reducer'
-import songOfLines from './songOfLines.reducer'
+import linesList from './linesList.reducer';
+import songOfLines from './songOfLines.reducer';
+import savedLines from './savedLines.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   oneSong,
   linesList,
   songOfLines,
+  savedLines,
 });
 
 export default rootReducer;

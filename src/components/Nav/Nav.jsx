@@ -28,6 +28,10 @@ function Nav() {
               User Profile
             </Link>
 
+            <Link className="navLink" to="/workpage">
+              Editor
+            </Link>
+
             <Link className="navLink" to="/lines">
               Song Lines
             </Link>
