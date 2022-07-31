@@ -9,7 +9,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 function Details(props) {
 
   const dispatch = useDispatch();
-  const oneSongStore = useSelector(store => store.oneSong);
+  const oneSongStore = useSelector(store => store.songs);
   console.log('songstore', oneSongStore);
   const history = useHistory();
 

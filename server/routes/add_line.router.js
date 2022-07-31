@@ -7,7 +7,8 @@ router.post('/', (req, res) => {
   const saveLine = `
   INSERT INTO "saved_fragments" ("fragment_id", "user_id")
   VALUES ($1, $2)`;
-  pool.query(saveLine, [req.body.fragment_id, req.body.user_id])
+  const values = [req.body.fragment_id, req.body.user_id];
+  pool.query(saveLine, values)
   .then(result => {
     console.log('added to saved_fragments');
   }).catch(err => {

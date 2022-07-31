@@ -13,17 +13,21 @@ function SavedLines() {
   const userStore = useSelector(store => store.user);
   const history = useHistory();
 
+  console.log('store', useSelector(store => store));
+
   useEffect(() => {
-    dispatch({type: 'FETCH_SAVED_LINES'});
+    setTimeout(() => {
+      dispatch({type: 'FETCH_SAVED_LINES', payload: userStore['id']});
+    }, 3000)
   }, []);
 
   const deleteLine = (userID, lineID) =>{
-    let newLine = {
+    let lineToDelete = {
       user_id: userID,
       fragment_id: lineID
     }
-    console.log('sent request to delete line:', deleteLine);
-    dispatch({type: 'TRIGGER_DELETE_LINE', payload: deleteLine});
+    console.log('sent request to delete line:', lineToDelete);
+    dispatch({type: 'TRIGGER_DELETE_LINE', payload: lineToDelete});
   }
 
   return (

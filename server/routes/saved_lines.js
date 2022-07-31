@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
   JOIN lyrics_fragments
   ON lyrics_fragments.fragment_id = saved_fragments.fragment_id
   JOIN users ON saved_fragments.user_id = users.id
+  WHERE
   ORDER BY saved_fragments.fragment_id ASC`;
   pool.query(query)
     .then( result => {
