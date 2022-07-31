@@ -3,6 +3,8 @@ const linesListReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_LINES':
       return action.payload;
+    // case 'ADD_LINE':
+    //   return action.payload;
     default:
       return state;
   }

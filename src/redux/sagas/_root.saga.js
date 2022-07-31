@@ -6,6 +6,7 @@ import songsSaga from './songs.saga';
 import oneSongSaga from './oneSong.saga';
 import linesListSaga from './linesList.saga';
 import songOfLinesSaga from './songOfLines.saga';
+import addLineSaga from './addLine.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     oneSongSaga(),
     linesListSaga(),
     songOfLinesSaga(),
+    addLineSaga(),
   ]);
 }

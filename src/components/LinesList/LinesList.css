@@ -5,7 +5,7 @@
 #linesBox {
   height: 25em;
   overflow:scroll;
-  width: 50%;
+  width: 55%;
 }
 
 table, th, td {
@@ -13,17 +13,17 @@ table, th, td {
 }
 
 #songHeader {
-  width: 34%;
+  width: 25%;
 }
 
 #albumHeader {
-  width: 22%;
+  width: 17%;
 }
 
 .addButton {
   font-size:large;
   text-align: center;
-  padding-left: 28.5%;
+  padding-left: 22.5%;
   border: none;
   background: none;
 }
@@ -35,5 +35,5 @@ table, th, td {
 .addButton:active {
   font-size: larger;
   color: red;
-  padding-left: 28%;
+  padding-left: 22%;
 }

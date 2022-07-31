@@ -35,7 +35,7 @@ function Details(props) {
         <pre className="songLyrics" key={(song.song_id.toString())} onClick={console.log('beep')}>{lineBrokenSong}</pre>
       <button id="backButton" onClick={goToSongs}>Back</button>
       </div>
-
+      <img src="/images/rs-207507-NOLA_006.jpg.webp" id="songPageBruce"></img>
       </section>)
       }
     </div>

@@ -2,10 +2,11 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
 
-  const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON songs.album_id = albums.album_id ORDER BY lyrics_fragments.song_id ASC`;
-  pool.query(query)
+  const query = `SELECT * FROM lyrics_fragments JOIN saved_fragments ON lyrics_fragments.fragment_id = saved_fragments.fragment_id JOIN users ON saved_fragments.user_id = users.id ORDER BY lyrics_fragments.fragment_id ASC`;
+  values = [req.body.fragment_id, req.body.user_id]
+  pool.query(query, values)
     .then( result => {
       res.send(result.rows);
     })
