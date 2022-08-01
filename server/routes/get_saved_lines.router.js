@@ -4,9 +4,9 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
-  const query = `SELECT * FROM lyrics_fragments JOIN saved_fragments ON lyrics_fragments.fragment_id = saved_fragments.fragment_id ORDER BY lyrics_fragments.fragment_id ASC`; //JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1
-  // values = [req.body.user_id];
-  pool.query(query)
+  const query = `SELECT * FROM lyrics_fragments JOIN saved_fragments ON lyrics_fragments.fragment_id = saved_fragments.fragment_id JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1 ORDER BY lyrics_fragments.fragment_id ASC`; //JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1
+  value = [req.user.id];
+  pool.query(query, value)
     .then( result => {
       res.send(result.rows);
     })

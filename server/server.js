@@ -35,7 +35,7 @@ app.use('/api/lines_list', linesListRouter);
 app.use('/api/add_line', addLineRouter);
 //app.use('/api/song_of_lines', songOfLinesRouter);
 app.use('/api/get_saved_lines', getSavedLinesRouter);
-app.use('/api/get_saved_lines', editorRouter);
+app.use('/api/editor', editorRouter);
 // app.use('/api/oneSong', oneSongRouter);
 // Serve static files
 app.use(express.static('build'));

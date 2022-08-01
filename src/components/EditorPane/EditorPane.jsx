@@ -22,7 +22,7 @@ function EditorPane() {
   useEffect(() => {
     setTimeout(() => {
       dispatch({type: 'FETCH_CREATION', userID});    //, payload: userStore['id']
-    }, 1000)
+    }, 3000)
   }, []);
 
   const deleteLine = (userID, lineID) =>{
