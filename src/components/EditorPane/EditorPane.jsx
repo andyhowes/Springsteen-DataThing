@@ -30,6 +30,9 @@ function EditorPane(props) {
 
   }, []);
 
+  const arrayForCreation = Array.from(editorStore);
+  console.log('here it is!', arrayForCreation)
+
   function handleOnDragEnd(result) {
     const items = Array.from(editorStore);
     const [reorderedItem] = items.splice(result.source.index, 1);

@@ -45,9 +45,10 @@ function SavedLines(props) {
 
   return (
     <div id="savedLinesBox">
-      <h1 className="linesCap">SAVED LINES</h1>
+
       {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section><div id="linesBox">
+        <h1 className="linesCap">SAVED LINES</h1>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="droppableIdForSavedLinesList">
             {(provided) => (

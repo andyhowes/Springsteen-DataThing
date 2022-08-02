@@ -1,11 +1,13 @@
 .linesCap {
   font-family: 'LibreFranklinBold';
+  font-size:x-large;
 }
 
 #linesBox {
   height: 25em;
   overflow:scroll;
   width: 100%;
+  float: left;
 }
 
 table, th, td {
