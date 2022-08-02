@@ -22,8 +22,8 @@ function SongList() {
 
   return (
     <div className="container">
-      <h1 className="lyricsCap">SONGS</h1>
       <div id="lyricsBox">
+        <h1 className="lyricsCap">SONGS</h1>
         <ul id="lyricsList">
           {songsStore.map(song => {
 

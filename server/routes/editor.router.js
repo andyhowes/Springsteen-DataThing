@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
   const query =
-  `DELETE FROM creation_stack WHERE "line_id" = $1`;
+  `DELETE FROM creation_stacks WHERE "line_id" = $1`;
   value = [req.body.id];
   pool.query(query, value)
 .then(() => {
@@ -45,19 +45,20 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   })
 })
 
-// router.get('/fragments:id', (req, res) => {
-//   const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON albums.album_id = songs.album_id WHERE lyric_fragments.song_id=$1`;
-//   const values = [req.params.id];
-//   pool.query(query, values)
-//     .then( result => {
-//       console.log('req params', req.params);
-//       res.send(result.rows);
-//     })
-//     .catch(err => {
-//       console.log('ERROR: Getting that song', err);
-//       res.sendStatus(500)
-//     })
-// });
+router.post('/', (req, res) => {
+  console.log('req.body:', req.body);
+  const saveCreation = `
+  INSERT INTO "creation_stacks" ("content_id", "fragment_id", "user_id")
+  VALUES ($1, $2, $3)`;
+  const values = [req.body.content_id, req.body.fragment_id, req.user.id];
+  pool.query(saveLine, values)
+  .then(result => {
+    console.log('added to saved_fragments');
+  }).catch(err => {
+    console.log('problem adding fragment', err);
+    res.sendStatus(500);
+  })
+});
 
 /**
  * POST route template

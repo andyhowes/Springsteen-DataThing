@@ -10,8 +10,9 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 function EditorPane(props) {
 
   const [title, setTitle] = useState('');
-  const [items, setItems] = useState();
-  const [lyrics, updateLyrics] = useState();
+  const [items, setItems] = useState('');
+  const [lyrics, updateLyrics] = useState('');
+  const [save, setSave] = useState('');
 
   const dispatch = useDispatch();
   const editorStore = useSelector(store => store.editor);
@@ -48,8 +49,22 @@ function EditorPane(props) {
     setTitle(event.target.value);
   }
 
+  const setSaveSlot = event => {
+    setSave(event.target.value);
+  }
+
   const addTitle = () => {
      let newTitle = title;
+  }
+
+  const submitCreation = () => {
+    let newCreation = {
+      content_id: save,
+      user_id: userID,
+
+    }
+    console.log('Creation submitted in Editor', newCreation);
+    dispatch({type: 'ADD_CREATION', payload: newCreation});
   }
 
   return (
@@ -58,7 +73,6 @@ function EditorPane(props) {
       {editorStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section><div id="linesBox">
         <h3>{title}</h3>
-        <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input><button id="setTitleButton" onClick={setNewTitle}>Set Title</button>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="droppableIdForEditorList">
           {(provided) => (
@@ -66,14 +80,32 @@ function EditorPane(props) {
               {editorStore.map((line, index) => {
                 let lineKey = line.line_id + 'b';
                 return (
-                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) => (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}><li>{line.fragment_text}<button className="deleteButton" onClick={()=>{deleteLine(line.line_id)}}>⊖</button></li></div>)}</Draggable>
+                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) =>
+                  (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}>
+                  <li><button className="deleteButton" onClick={()=>{deleteLine(line.line_id)}}>⊖</button>
+                  {line.fragment_text}</li></div>)}</Draggable>
                 )
               })}
-              </ul>
-              )}
+            </ul>
+          )}
 
           </Droppable>
         </DragDropContext>
+        <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input>
+        <label for="saveSlot">Save Slot</label>
+
+        <select name="saveSlot" id="slot" onChange={setSaveSlot}>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+          <option value='6'>6</option>
+          <option value='7'>7</option>
+          <option value='8'>8></option>
+          <option value='9'>9></option>
+        </select>
+        <button id="setTitleButton" onClick={setNewTitle}>Set Title</button>
       </div></section>)}
     </div>
   );

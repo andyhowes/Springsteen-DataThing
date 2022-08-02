@@ -2,14 +2,12 @@
   width: 40%;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   float: left;
-  padding-left: 1em;
 }
 
 #songPageBruce {
   position:relative;
-  height: 25em;
+  height: 18em;
   float: right;
-  padding-right: 2em;
 }
 
 .songCap {

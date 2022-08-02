@@ -16,14 +16,9 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h1 className="CapitalizedFranklin">SPRINGSTEEN</h1>
+      {/* <h1 className="CapitalizedFranklin">SPRINGSTEEN</h1> */}
       <img src="/images/20190923-Bruce-Springsteen-03.jpg.webp" id="bruceMain"></img>
-      <div className="grid">
-        <div className="grid-col grid-col_8">
-        <SongList />
-        </div>
-
-      </div>
+          <SongList />
     </div>
   );
 }

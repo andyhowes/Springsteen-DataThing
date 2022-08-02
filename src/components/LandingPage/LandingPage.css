@@ -3,16 +3,16 @@ Grid
 -------------------------------------------------------------------------------- */
 
 .grid {
-  display: flex;
+  display:flex;
   flex: 0 1 auto;
   /* defaults to 'row' */
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
   /* defaults to 'flex-start' */
   justify-content: flex-start;
   align-items: flex-start;
   float:right;
-  padding-right:5%;
+  padding-right: 5%;
 }
 
 .grid-col {
@@ -81,13 +81,26 @@ Grid
   max-width: 100%;
 }
 
-
-
 #bruceMain {
   position:relative;
   height: 30em;
+  float: right;
 }
 
 li {
   list-style:none;
+}
+
+.CapitalizedFranklin {
+  color: red;
+  background-color: black;
+  writing-mode: vertical-lr;
+  float:right;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  padding-left: .25em;
+  padding-right: .25em;
+  height: 30%;
+  font-size: 36px;
+  font-family: 'LibreFranklinBold';
 }

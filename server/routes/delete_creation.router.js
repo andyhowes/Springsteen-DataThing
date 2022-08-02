@@ -10,7 +10,7 @@ const {
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
   const query =
-  `DELETE FROM creation_stack WHERE "line_id" = $1`;
+  `DELETE FROM creation_stacks WHERE "line_id" = $1`;
   value = [req.body.id];
   pool.query(query, value)
 .then(() => {

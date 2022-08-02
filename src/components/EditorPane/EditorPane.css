@@ -5,7 +5,7 @@
 #linesBox {
   height: 25em;
   overflow:scroll;
-  width: 100%;
+  width: max-content;
 }
 
 table, th, td {

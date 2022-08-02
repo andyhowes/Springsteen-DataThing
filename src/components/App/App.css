@@ -4,6 +4,7 @@ body,
   height: 100%;
 }
 
+
 body {
   font-family: 'Franklin Gothic Medium', sans-serif;
   margin: 0px;
@@ -146,6 +147,6 @@ input {
   padding-left: .25em;
   padding-right: .25em;
   height: 30%;
-  font-size: 40px;
+  font-size: 36px;
   font-family: 'LibreFranklinBold';
 }
