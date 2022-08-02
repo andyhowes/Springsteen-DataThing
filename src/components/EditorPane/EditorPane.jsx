@@ -11,7 +11,7 @@ function EditorPane(props) {
 
   const [title, setTitle] = useState('');
   const [items, setItems] = useState('');
-  const [lyrics, updateLyrics] = useState('');
+
   const [save, setSave] = useState('');
 
   const dispatch = useDispatch();
@@ -33,8 +33,10 @@ function EditorPane(props) {
   const arrayForCreation = Array.from(editorStore);
   console.log('here it is!', arrayForCreation)
 
+  const [lyrics, updateLyrics] = useState(arrayForCreation);
+
   function handleOnDragEnd(result) {
-    const items = Array.from(editorStore);
+    const items = lyrics;
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     console.log('in handleOnDragEnd:', result);
@@ -56,16 +58,21 @@ function EditorPane(props) {
     setSave(event.target.value);
   }
 
+  let songRaw = lyrics.join('\n');
+
   const addTitle = () => {
-     let newTitle = title;
+    let submitPackage = {
+      newTitle: title,
+     content_text: songRaw,
+     user_id: editorStore.user_id
+    }
+    console.log('sending submission of title package', submitPackage);
+    dispatch({type: 'SUBMIT_TITLE_PACKAGE', payload: submitPackage});
   }
 
   const submitCreation = () => {
-    let newCreation = {
-      content_id: save,
-      user_id: userID,
-
-    }
+    let newCreation = Array.from(lyrics);
+    addTitle();
     console.log('Creation submitted in Editor', newCreation);
     dispatch({type: 'ADD_CREATION', payload: newCreation});
   }
@@ -80,7 +87,7 @@ function EditorPane(props) {
           <Droppable droppableId="droppableIdForEditorList">
           {(provided) => (
             <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
-              {editorStore.map((line, index) => {
+              {lyrics.map((line, index) => {
                 let lineKey = line.line_id + 'b';
                 return (
                   <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) =>
@@ -89,6 +96,7 @@ function EditorPane(props) {
                   {line.fragment_text}</li></div>)}</Draggable>
                 )
               })}
+              {provided.placeholder}
             </ul>
           )}
 
@@ -105,10 +113,10 @@ function EditorPane(props) {
           <option value='5'>5</option>
           <option value='6'>6</option>
           <option value='7'>7</option>
-          <option value='8'>8></option>
-          <option value='9'>9></option>
+          <option value='8'>8</option>
+          <option value='9'>9</option>
         </select>
-        <button id="setTitleButton" onClick={setNewTitle}>Set Title</button>
+        <button id="setTitleButton" onClick={submitCreation}>Set Title</button>
       </div></section>)}
     </div>
   );

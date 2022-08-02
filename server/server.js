@@ -17,6 +17,8 @@ const getSavedLinesRouter = require('./routes/get_saved_lines.router');
 const editorRouter = require('./routes/editor.router');
 const deleteCreationRouter = require('./routes/delete_creation.router');
 const deleteSavedLineRouter = require('./routes/delete_saved_line.router');
+const addCreationRouter = require('./routes/add_creation.router');
+const addTitleRouter = require('./routes/add_title.router');
 // const oneSongRouter = require('./routes/one_song.router')
 
 // Body parser middleware
@@ -40,6 +42,8 @@ app.use('/api/get_saved_lines', getSavedLinesRouter);
 app.use('/api/editor', editorRouter);
 app.use('/api/delete_creation', deleteCreationRouter);
 app.use('/api/delete_saved_line', deleteSavedLineRouter);
+app.use('/api/add_creation', addCreationRouter);
+app.use('/api/addTitle', addTitleRouter);
 // app.use('/api/oneSong', oneSongRouter);
 // Serve static files
 app.use(express.static('build'));
