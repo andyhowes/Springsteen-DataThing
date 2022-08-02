@@ -7,11 +7,9 @@ import './EditorPane.css';
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function EditorPane(props) {
+function EditorPane() {
 
   const [title, setTitle] = useState('');
-  const [items, setItems] = useState();
-  const [lyrics, updateLyrics] = useState();
 
   const dispatch = useDispatch();
   const linesStore = useSelector(store => store.savedLines);
@@ -28,15 +26,6 @@ function EditorPane(props) {
     }, 3000)
   }, []);
 
-  function handleOnDragEnd(result) {
-    const items = Array.from(lyrics);
-    const [reorderedItem] = item.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    console.log(result);
-
-    updateLyrics(items);
-  }
-
   const deleteLine = (userID, lineID) =>{
     let lineToDelete = {
       user_id: userID,
@@ -46,9 +35,9 @@ function EditorPane(props) {
     dispatch({type: 'TRIGGER_DELETE_CREATION', payload: lineToDelete});
   }
 
-  // onDragEnd = result => {
+  onDragEnd = result => {
 
-  // }
+  }
 
   const setNewTitle = event => {
     setTitle(event.target.value);
@@ -59,20 +48,23 @@ function EditorPane(props) {
       <h1 className="linesCap">EDITOR</h1>
       {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section><div id="linesBox">
-                                                                        {/* onDragEnd={this.onDragEnd} */}
+
         <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input>
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="DroppableIdForEditorList">
-          {(provided) => (
-            <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId={this.props.column.id}>
+          {(provided, snapshot) => (
+                    <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                    >
+            <ul id="lineList">
               {linesStore.map((line, index) => {
                 let lineKey = line.fragment_id + 'b';
                 return (
-                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) => (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}><li>{line.fragment_text}<button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></li></div>)}</Draggable>
+                  <Draggable draggableId={lineKey} index={index}>{(provided, snapshot) => (<div ref={provided.innerRef}{...provided.draggableProps}{...provided.dragHandleProps}><li>{line.fragment_text}<button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></li></div>)}</Draggable>
                 )
               })}
-              </ul>
-              )}
+            </table>
           </Droppable>
         </DragDropContext>
       </div></section>)}

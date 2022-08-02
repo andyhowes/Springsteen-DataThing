@@ -10,10 +10,10 @@ router.get('/', (req, res) => {
   ON creation_stacks.content_id = user_creations.content_id
   JOIN users ON creation_stacks.user_id = users.id
   JOIN lyrics_fragments ON creation_stacks.fragment_id = lyrics_fragments.fragment_id
-  WHERE creation_stacks.user_id = 6
+  WHERE creation_stacks.user_id = $1
   ORDER BY creation_stacks.fragment_id ASC`;
   const value = [req.user.id]
-  pool.query(query)
+  pool.query(query, value)
     .then( result => {
       res.send(result.rows);
     })
