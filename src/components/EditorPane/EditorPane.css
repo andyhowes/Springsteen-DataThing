@@ -1,0 +1,45 @@
+.linesCap {
+  font-family: 'LibreFranklinBold';
+}
+
+#linesBox {
+  height: 25em;
+  overflow:scroll;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+#songHeader {
+  width: 25%;
+}
+
+#albumHeader {
+  width: 17%;
+}
+
+.deleteButton {
+  font-size:large;
+  text-align: center;
+  padding-left: 22.5%;
+  border: none;
+  background: none;
+}
+
+.deleteButton:hover {
+  color: #B44C4B;
+}
+
+.deleteButton:active {
+  font-size: larger;
+  color: red;
+  padding-left: 22%;
+}
+
+#savedLinesBox {
+  float:left;
+  padding-left: 1em;
+  width:fit-content;
+}

@@ -5,30 +5,7 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/', (req, res) => {
-  console.log('in get route for editor');
-  const query =
-  `SELECT * FROM creation_stacks
-  JOIN user_creations
-  ON creation_stacks.content_id = user_creations.content_id
-  JOIN users ON creation_stacks.user_id = users.id
-  JOIN lyrics_fragments ON creation_stacks.fragment_id = lyrics_fragments.fragment_id
-  WHERE creation_stacks.user_id = $1
-  ORDER BY creation_stacks.fragment_id ASC`;
-  const value = [req.user.id]
-  pool.query(query, value)
-    .then( result => {
-      res.send(result.rows);
-    })
-    .catch(err => {
-      console.log('ERROR: Getting fragments', err);
-      res.sendStatus(500)
-    })
-});
 
-// router.post('/', (req, res) => {
-//   // POST route code here
-// });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
 

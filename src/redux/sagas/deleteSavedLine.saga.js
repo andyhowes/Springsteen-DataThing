@@ -3,15 +3,15 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* deleteLine(action) {
   try {
-    yield axios.delete(`/api/get_saved_lines/${action.payload}`)
+    yield axios.delete(`/api/delete_saved_lines/${action.payload}`)
     .then(response => {
       console.log('Response from Delete Saved Line:', response)
     }).catch (error => {
-      console.log('Error deleting line in Saga:', error);
+      console.log('Error A: deleting line in Saga:', error);
     })
     yield put ({type:'FETCH_SAVED_LINES'});
   } catch(error) {
-    console.log('Error deleting line in saga', error);
+    console.log('Error B: deleting line in saga', error);
   }
 }
 

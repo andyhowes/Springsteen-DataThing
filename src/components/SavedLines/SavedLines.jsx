@@ -24,8 +24,9 @@ function SavedLines() {
     }, 1000)
   }, []);
 
-  const deleteLine = (id) =>{
-    let lineToDelete = id;
+  const deleteLine = (line_id) =>{
+    let lineToDelete = line_id;
+    console.log('checking id in deleteLine', line_id);
     console.log('sent request to delete line:', lineToDelete);
     dispatch({type: 'TRIGGER_DELETE_LINE', payload: lineToDelete});
   }
@@ -46,7 +47,7 @@ function SavedLines() {
           {linesStore.map(line => {
 
             return (
-              <tbody><tr className="lineSingle" key={(line.id)}><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="deleteButton" onClick={()=>{deleteLine(line.id)}}>⊖</button></td></tr></tbody>
+              <tbody><tr className="lineSingle" key={(line.id)}><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="deleteButton" onClick={()=>{deleteLine(line.saved_id)}}>⊖</button></td></tr></tbody>
             )
           })}
         </table>

@@ -5,25 +5,11 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/', rejectUnauthenticated ,(req, res) => {
-
-  const query = `SELECT * FROM lyrics_fragments JOIN saved_fragments ON lyrics_fragments.fragment_id = saved_fragments.fragment_id JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1 ORDER BY lyrics_fragments.fragment_id ASC`; //JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1
-  value = [req.user.id];
-  pool.query(query, value)
-    .then( result => {
-      res.send(result.rows);
-    })
-    .catch(err => {
-      console.log('ERROR: Getting fragments', err);
-      res.sendStatus(500)
-    })
-});
-
 router.delete('/:id', (req, res) => {
 
   const query =
   `DELETE FROM saved_fragments WHERE "id" = $1`;
-  value = [req.params.id];
+  value = [req.body.id];
   pool.query(query, value)
 .then(() => {
   console.log('delete appears successful at Router');

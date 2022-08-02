@@ -31,18 +31,15 @@ function EditorPane(props) {
 
   function handleOnDragEnd(result) {
     const items = Array.from(editorStore);
-    const [reorderedItem] = item.splice(result.source.index, 1);
+    const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     console.log('in handleOnDragEnd:', result);
 
     updateLyrics(items);
   }
 
-  const deleteLine = (userID, lineID) =>{
-    let lineToDelete = {
-      user_id: userID,
-      fragment_id: lineID
-    }
+  const deleteLine = (id) =>{
+    let lineToDelete = id;
     console.log('sent request to delete line:', lineToDelete);
     dispatch({type: 'TRIGGER_DELETE_CREATION', payload: lineToDelete});
   }
@@ -63,17 +60,18 @@ function EditorPane(props) {
         <h3>{title}</h3>
         <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input><button id="setTitleButton" onClick={setNewTitle}>Set Title</button>
         <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="DroppableIdForEditorList">
+          <Droppable droppableId="droppableIdForEditorList">
           {(provided) => (
             <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
               {editorStore.map((line, index) => {
-                let lineKey = line.fragment_id + 'b';
+                let lineKey = line.line_id + 'b';
                 return (
-                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) => (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}><li>{line.fragment_text}<button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></li></div>)}</Draggable>
+                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) => (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}><li>{line.fragment_text}<button className="deleteButton" onClick={()=>{deleteLine(line.line_id)}}>⊖</button></li></div>)}</Draggable>
                 )
               })}
               </ul>
               )}
+
           </Droppable>
         </DragDropContext>
       </div></section>)}
