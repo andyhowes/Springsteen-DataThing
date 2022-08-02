@@ -14,7 +14,7 @@ function EditorPane(props) {
   const [lyrics, updateLyrics] = useState();
 
   const dispatch = useDispatch();
-  const linesStore = useSelector(store => store.savedLines);
+  const editorStore = useSelector(store => store.editor);
   const userStore = useSelector(store => store.user);
   const history = useHistory();
 
@@ -25,14 +25,15 @@ function EditorPane(props) {
   useEffect(() => {
     setTimeout(() => {
       dispatch({type: 'FETCH_CREATION', userID});    //, payload: userStore['id']
-    }, 3000)
+    }, 1000)
+
   }, []);
 
   function handleOnDragEnd(result) {
-    const items = Array.from(lyrics);
+    const items = Array.from(editorStore);
     const [reorderedItem] = item.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-    console.log(result);
+    console.log('in handleOnDragEnd:', result);
 
     updateLyrics(items);
   }
@@ -46,26 +47,26 @@ function EditorPane(props) {
     dispatch({type: 'TRIGGER_DELETE_CREATION', payload: lineToDelete});
   }
 
-  // onDragEnd = result => {
-
-  // }
-
   const setNewTitle = event => {
     setTitle(event.target.value);
+  }
+
+  const addTitle = () => {
+     let newTitle = title;
   }
 
   return (
     <div id="savedLinesBox">
       <h1 className="linesCap">EDITOR</h1>
-      {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
+      {editorStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section><div id="linesBox">
-                                                                        {/* onDragEnd={this.onDragEnd} */}
-        <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input>
+        <h3>{title}</h3>
+        <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input><button id="setTitleButton" onClick={setNewTitle}>Set Title</button>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="DroppableIdForEditorList">
           {(provided) => (
             <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
-              {linesStore.map((line, index) => {
+              {editorStore.map((line, index) => {
                 let lineKey = line.fragment_id + 'b';
                 return (
                   <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) => (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}><li>{line.fragment_text}<button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></li></div>)}</Draggable>

@@ -27,6 +27,19 @@ router.get('/', (req, res) => {
 //   // POST route code here
 // });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+
+  const query =
+  `DELETE FROM creation_stack WHERE "line_id" = $1`;
+  value = req.params.id;
+}).then(() => {
+  console.log('delete appears successful at Editor Router');
+  res.sendStatus(200);
+}).catch(error => {
+  console.log('failed to delete line at Editor Router', error);
+  res.sendStatus(500);
+})
+
 // router.get('/fragments:id', (req, res) => {
 //   const query = `SELECT * FROM lyrics_fragments JOIN songs ON lyrics_fragments.song_id = songs.song_id JOIN albums ON albums.album_id = songs.album_id WHERE lyric_fragments.song_id=$1`;
 //   const values = [req.params.id];

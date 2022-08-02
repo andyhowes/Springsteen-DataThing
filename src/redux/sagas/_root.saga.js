@@ -9,6 +9,8 @@ import linesListSaga from './linesList.saga';
 import addLineSaga from './addLine.saga';
 import savedLinesSaga from './savedLines.saga';
 import editorSaga from './editor.saga';
+import deleteCreationSaga from './deleteCreation.saga';
+import deleteSavedLineSaga from './deleteSavedLine.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +31,7 @@ export default function* rootSaga() {
     addLineSaga(),
     savedLinesSaga(),
     editorSaga(),
+    deleteCreationSaga(),
+    deleteSavedLineSaga(),
   ]);
 }

@@ -22,6 +22,19 @@ router.get('/', (req, res) => {
     })
 });
 
+router.delete('/savedLinesDelete', (req, res) => {
+
+  const query =
+  `DELETE FROM saved_fragments WHERE "id" = $1`;
+  value = req.body.id;
+}).then(() => {
+  console.log('delete appears successful at Router');
+  res.sendStatus(200);
+}).catch(error => {
+  console.log('failed to delete saved line at Router', error);
+  res.sendStatus(500);
+})
+
 router.post('/', (req, res) => {
   // POST route code here
 });

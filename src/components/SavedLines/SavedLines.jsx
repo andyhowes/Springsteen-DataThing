@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import './SavedLines.css';
 
 // CUSTOM COMPONENTS
@@ -20,14 +21,11 @@ function SavedLines() {
   useEffect(() => {
     setTimeout(() => {
       dispatch({type: 'FETCH_SAVED_LINES', userID});    //, payload: userStore['id']
-    }, 3000)
+    }, 1000)
   }, []);
 
-  const deleteLine = (userID, lineID) =>{
-    let lineToDelete = {
-      user_id: userID,
-      fragment_id: lineID
-    }
+  const deleteLine = (id) =>{
+    let lineToDelete = id;
     console.log('sent request to delete line:', lineToDelete);
     dispatch({type: 'TRIGGER_DELETE_LINE', payload: lineToDelete});
   }
@@ -48,7 +46,7 @@ function SavedLines() {
           {linesStore.map(line => {
 
             return (
-              <tbody><tr className="lineSingle" key={(line.fragment_id)}><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="deleteButton" onClick={()=>{deleteLine(userStore.id, line.fragment_id)}}>⊖</button></td></tr></tbody>
+              <tbody><tr className="lineSingle" key={(line.id)}><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="deleteButton" onClick={()=>{deleteLine(line.id)}}>⊖</button></td></tr></tbody>
             )
           })}
         </table>
