@@ -6,11 +6,11 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.delete('/:id', (req, res) => {
-
+  console.log('print req.user.id and req.params.id', req.user.id, req.params.id);
   const query =
-  `DELETE FROM saved_fragments WHERE "id" = $1`;
-  value = [req.body.id];
-  pool.query(query, value)
+  `DELETE FROM saved_fragments WHERE "user_id" = $1 AND "saved_id" = $2`;
+  values = [req.user.id, parseInt(req.params.id)];
+  pool.query(query, values)
 .then(() => {
   console.log('delete appears successful at Router');
   res.sendStatus(200);

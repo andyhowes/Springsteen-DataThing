@@ -41,7 +41,7 @@ app.use('/api/add_line', addLineRouter);
 app.use('/api/get_saved_lines', getSavedLinesRouter);
 app.use('/api/editor', editorRouter);
 app.use('/api/delete_creation', deleteCreationRouter);
-app.use('/api/delete_saved_line', deleteSavedLineRouter);
+app.use('/api/deleteLine', deleteSavedLineRouter);
 app.use('/api/add_creation', addCreationRouter);
 app.use('/api/addTitle', addTitleRouter);
 // app.use('/api/oneSong', oneSongRouter);

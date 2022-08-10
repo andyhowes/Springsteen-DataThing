@@ -38,6 +38,7 @@ function SavedLines(props) {
 
   const deleteLine = (line_id) =>{
     let lineToDelete = line_id;
+
     console.log('checking id in deleteLine', line_id);
     console.log('sent request to delete line:', lineToDelete);
     dispatch({type: 'TRIGGER_DELETE_LINE', payload: lineToDelete});

@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* deleteLine(action) {
   try {
-    yield axios.delete(`/api/delete_saved_lines/${action.payload}`)
+    yield axios.delete(`/api/deleteLine/${action.payload}`)
     .then(response => {
       console.log('Response from Delete Saved Line:', response)
     }).catch (error => {
