@@ -93,12 +93,3 @@ li {
   list-style:none;
 }
 
-#savedLinesBox {
-  float:left;
-  width:max-content;
-}
-
-#editorPaneBox {
-  float: right;
-  width:max-content;
-}

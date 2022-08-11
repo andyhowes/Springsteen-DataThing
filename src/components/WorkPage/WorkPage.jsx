@@ -26,10 +26,6 @@ function WorkPage() {
       <section id="savedLinesBox">
         <SavedLines />
       </section>
-      <section id="editorPaneBox">
-        <EditorPane />
-      </section>
-
 
     </div>
   );

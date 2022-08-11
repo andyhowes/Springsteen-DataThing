@@ -3,13 +3,6 @@
   font-size:x-large;
 }
 
-#linesBox {
-  height: 25em;
-  overflow:scroll;
-  width:100%;
-  float: left;
-}
-
 table, th, td {
   border: 1px solid;
 }
@@ -40,7 +33,23 @@ table, th, td {
 
 #savedLinesBox {
   float:left;
-  width:max-content;
+  width:fit-content;
   text-align:left;
+  overflow:scroll;
+  height: 25em;
 }
 
+#editorBox {
+  height: 25em;
+  overflow:scroll;
+  width: fit-content;
+  float: right;
+}
+
+#workBox {
+  width: 100%;
+}
+
+#titleBox {
+  float:right;
+}
