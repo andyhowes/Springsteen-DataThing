@@ -95,6 +95,7 @@ li {
 
 #savedLinesBox {
   float:left;
+  width:max-content;
 }
 
 #editorPaneBox {
