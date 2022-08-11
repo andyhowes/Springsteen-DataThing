@@ -64,10 +64,10 @@ function SavedLines(props) {
                     {line.fragment_text}</li></div>)}</Draggable>
                   )
                 })}
-            </ul>
-          )}
-            </Droppable>
-          </DragDropContext>
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div></section>)}
     </div>
   );
