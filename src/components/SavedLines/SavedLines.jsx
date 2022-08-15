@@ -8,8 +8,6 @@ import './SavedLines.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function SavedLines(props) {
-  //const [songs, setSongs] = useState('Songs');   //I don't think this is in play
-  const [savedLines, updateSavedLines] = useState('');
   const [items, setItems] = useState('');
 
   const dispatch = useDispatch();
@@ -27,13 +25,17 @@ function SavedLines(props) {
     }, 1000)
   }, []);
 
+  const arrayForLines = Array.from(linesStore);
+
+  const [lines, updateLines] = useState(arrayForLines);
+
   function handleOnDragEnd(result) {
-    const items = Array.from(linesStore);
+    const items = lines;
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     console.log('in handleDragEnd:', result);
 
-    updateSavedLines(items);
+    updateLines(items);
   }
 
   const deleteLine = (line_id) =>{
@@ -54,7 +56,7 @@ function SavedLines(props) {
           <Droppable droppableId="droppableIdForSavedLinesList">
             {(provided) => (
               <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
-                {linesStore.map((line, index) => {
+                {lines.map((line, index) => {
                   let savedLineKey = line.saved_id + 'a';
                   return (
                     <Draggable key={savedLineKey} draggableId={savedLineKey} index={index}>

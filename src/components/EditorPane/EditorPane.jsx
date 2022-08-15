@@ -116,7 +116,7 @@ function EditorPane(props) {
           <option value='8'>8</option>
           <option value='9'>9</option>
         </select>
-        <button id="setTitleButton" onClick={submitCreation}>Submit</button>
+        <button id="setTitleButton" onClick={submitCreation}>Submit    </button>
       </div></section>)}
     </div>
   );
