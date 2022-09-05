@@ -1,16 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const {
-  rejectUnauthenticated,
-} = require('../modules/authentication-middleware');
+const { rejectUnauthenticated, } = require('../modules/authentication-middleware');
 
 router.delete('/:id', (req, res) => {
-  console.log('print req.user.id and req.params.id', req.user.id, req.params.id);
+  console.log('print req.user.id and req.params.id', req.user.id, req.params.id, typeof(req.params.id));
   const query =
-  `DELETE FROM saved_fragments WHERE "user_id" = $1 AND "saved_id" = $2`;
-  values = [req.user.id, parseInt(req.params.id)];
-  pool.query(query, values)
+  `DELETE FROM saved_fragments WHERE "saved_id" = $1`;
+  value = [parseInt(req.params.id)];
+  pool.query(query, value)
 .then(() => {
   console.log('delete appears successful at Router');
   res.sendStatus(200);
