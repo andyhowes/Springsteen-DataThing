@@ -23,6 +23,7 @@ import SongOfLines from '../SongOfLines/SongOfLines';
 import SavedLines from '../SavedLines/SavedLines';
 import WorkPage from '../WorkPage/WorkPage';
 import EditorPane from '../EditorPane/EditorPane';
+import PageMerge from '../WorkPage/PageMerge';
 //import CreationPane from '../CreationPane/CreationPane';
 
 import './App.css';
@@ -170,6 +171,13 @@ function App() {
           path="/workpage"
           >
             <WorkPage />
+          </Route>
+
+          <Route
+          exact
+          path="/pagemerge"
+          >
+            <PageMerge />
           </Route>
 
           <Route
