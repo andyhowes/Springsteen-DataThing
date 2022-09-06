@@ -23,7 +23,7 @@ import SongOfLines from '../SongOfLines/SongOfLines';
 import SavedLines from '../SavedLines/SavedLines';
 import WorkPage from '../WorkPage/WorkPage';
 import EditorPane from '../EditorPane/EditorPane';
-import PageMerge from '../WorkPage/PageMerge';
+import Behemoth from '../WorkPage/Behemoth';
 //import CreationPane from '../CreationPane/CreationPane';
 
 import './App.css';
@@ -175,9 +175,9 @@ function App() {
 
           <Route
           exact
-          path="/pagemerge"
+          path="/behemoth"
           >
-            <PageMerge />
+            <Behemoth />
           </Route>
 
           <Route

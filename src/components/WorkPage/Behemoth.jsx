@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
-import './SavedLines.css';
+import './Behemoth.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -29,16 +29,25 @@ function Behemoth(props) {
     setTimeout(() => {
       dispatch({type: 'FETCH_SAVED_LINES', userID});    //, payload: userStore['id']
     }, 1000)
+    setTimeout(() => {
+      dispatch({type: 'FETCH_CREATION', userID});    //, payload: userStore['id']
+    }, 1000)
   }, []);
 
+
+  const arrayForLines = Array.from(linesStore);
+
+  const [lines, updateLines] = useState(arrayForLines);
+
   function handleOnDragEnd(result) {
-    const items = Array.from(linesStore);
+    const items = lines;
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     console.log('in handleDragEnd:', result);
 
-    updateSavedLines(items);
+    updateLines(items);
   }
+
   const deleteLine = (line_id) =>{
     let lineToDelete = line_id;
     console.log('checking id in deleteLine', line_id);
@@ -68,15 +77,16 @@ function Behemoth(props) {
     dispatch({type: 'ADD_CREATION', payload: newCreation});
   }
   return (
+    <DragDropContext onDragEnd={handleOnDragEnd}>
     <div id="savedLinesBox">
       <h1 className="linesCap">SAVED LINES</h1>
       {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section><div id="linesBox">
-        <DragDropContext onDragEnd={handleOnDragEnd}>
+
           <Droppable droppableId="droppableIdForSavedLinesList">
             {(provided) => (
               <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
-                {linesStore.map((line, index) => {
+                {lines.map((line, index) => {
                   let savedLineKey = line.saved_id + 'a';
                   return (
                     <Draggable key={savedLineKey} draggableId={savedLineKey} index={index}>
@@ -89,13 +99,13 @@ function Behemoth(props) {
             </ul>
           )}
             </Droppable>
-          </DragDropContext>
-      </div></section>)}
-      <h1 className="linesCap">EDITOR</h1>
+
+         <div id="creationBox">
+            <h1 className="linesCap">EDITOR</h1>
       {editorStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section id="savedCreationBox"><div>
         <h3>{title}</h3>
-        <DragDropContext onDragEnd={handleOnDragEnd}>
+
           <Droppable droppableId="droppableIdForEditorList">
           {(provided) => (
             <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
@@ -111,9 +121,15 @@ function Behemoth(props) {
             </ul>
           )}
           </Droppable>
-        </DragDropContext>
 
       </div></section>)}
+      </div>
+
+      </div></section>)}
+
     </div>
+    </DragDropContext>
   );
 }
+
+export default Behemoth;
