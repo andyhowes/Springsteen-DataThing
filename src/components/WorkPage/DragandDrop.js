@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
 `;
 
-class App extends React.Component {
+class DragAndDrop extends React.Component {
   state = initialData;
 
   onDragEnd = result => {
@@ -97,3 +97,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+export default DragAndDrop;
