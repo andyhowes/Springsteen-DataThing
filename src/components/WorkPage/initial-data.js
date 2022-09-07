@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-function InitialData(props) {
+function InitialDataBox(props) {
   const [savedLines, updateSavedLines] = useState('');
   const [items, setItems] = useState('');
   //const [title, setTitle] = useState('');
@@ -28,11 +28,11 @@ function InitialData(props) {
     // }, 1000)
   }, []);
 
-  const arrayForLines = Array.from(linesStore);
+  // const arrayForLines = Array.from(linesStore);
 
-  const [lines, updateLines] = useState(arrayForLines);
+  // const [lines, updateLines] = useState(arrayForLines);
 
-  const initialData = {
+  export const initialData = {
     tasks: {
       {linesStore.map((line, index) => {
       return (
@@ -91,4 +91,4 @@ function InitialData(props) {
 //                   )
 //                 })}
 
-export default InitialData;
+export default InitialDataBox;
