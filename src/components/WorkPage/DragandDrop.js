@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@atlaskit/css-reset';
-import styled from 'styled-components';
+//import '@atlaskit/css-reset';
+//import styled from 'styled-components';
 import { DragDropContext } from 'react-beautiful-dnd';
-import initialData from './initial-data';
-import Column from './column';
+import InitialDataBox from './initial-data';
+import Column from './Column';
 
 const Container = styled.div`
   display: flex;
 `;
 
 class DragAndDrop extends React.Component {
-  state = initialData;
+  state = InitialDataBox();
 
   onDragEnd = result => {
     const { destination, source, draggableId } = result;

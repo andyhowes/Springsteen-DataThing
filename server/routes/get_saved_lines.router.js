@@ -7,7 +7,11 @@ const {
 
 router.get('/', rejectUnauthenticated ,(req, res) => {
 
-  const query = `SELECT * FROM lyrics_fragments JOIN saved_fragments ON lyrics_fragments.fragment_id = saved_fragments.fragment_id JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1 ORDER BY lyrics_fragments.fragment_id ASC`; //JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1
+  const query = `
+  SELECT * FROM lyrics_fragments
+  JOIN saved_fragments ON lyrics_fragments.fragment_id = saved_fragments.fragment_id
+  JOIN users ON saved_fragments.user_id = users.id WHERE users.id = $1
+  ORDER BY lyrics_fragments.fragment_id ASC`;
   value = [req.user.id];
   pool.query(query, value)
     .then( result => {

@@ -32,18 +32,20 @@ function InitialDataBox(props) {
 
   // const [lines, updateLines] = useState(arrayForLines);
 
-  export const initialData = {
-    tasks: {
-      {linesStore.map((line, index) => {
-      return (
-        {
-          {line.saved_id} : {
-            id: {line.saved_id},
-            content: {line.fragment_text}
-          }
+  const lyricsDataMap = linesStore.map((line, index) => {
+    return (
+      {
+        {line.saved_id} : {
+          id: {line.saved_id},
+          content: {line.fragment_text}
         }
-      )
-  })}
+      }
+    )
+});
+
+   const initialData = {
+    tasks: {
+      {lyricsDataMap}
     },
     columns: {
       'column-1': {
@@ -60,8 +62,10 @@ function InitialDataBox(props) {
     // Facilitate reordering of the columns
     columnOrder: ['column-1', 'column-2'],
   };
+
+  return initialData;
 }
-  // Contents of linesStore mapped into initialData template 
+  // Contents of linesStore mapped into initialData template
 // {linesStore.map((line, index) => {
 //   return (
 //     {
@@ -79,7 +83,7 @@ function InitialDataBox(props) {
 //     }
 
 
-                //Original map for 
+                //Original map for
 // {lines.map((line, index) => {
 //                   let savedLineKey = line.saved_id + 'a';
 //                   return (

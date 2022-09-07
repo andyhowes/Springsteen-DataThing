@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useHistory } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
-import './SavedLines.css';
+import './WorkPage.css';
+import Column from './Column';
 
-// CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+const reorderColumnList = (sourceCol, startIndex, endIndex) => {
+  const newTaskIds = Array.from(sourceCol.taskIds);
+  const [removed] = newTaskIds.splice(startIndex, 1);
+  newTaskIds.splice(endIndex, 0, removed);
 
-function Behemoth(props) {
-  const [savedLines, updateSavedLines] = useState('');
-  const [items, setItems] = useState('');
-  const [title, setTitle] = useState('');
-  //const [items, setItems] = useState('');
-  const [lyrics, updateLyrics] = useState('');
-  const [save, setSave] = useState('');
+  const newColumn = {
+    ...sourceCol,
+    taskIds: newTaskIds,
+  };
+
+  return newColumn;
+}
+
+const PageMerge = () => {
+
+  const [state, setState] = useState(initialData);
 
   const dispatch = useDispatch();
   const linesStore = useSelector(store => store.savedLines);
   const userStore = useSelector(store => store.user);
-  const editorStore = useSelector(store => store.editor);
-  const history = useHistory();
-
-  console.log('store', useSelector(store => store));
 
   const userID = userStore.id;
 
@@ -31,89 +35,130 @@ function Behemoth(props) {
     }, 1000)
   }, []);
 
-  function handleOnDragEnd(result) {
-    const items = Array.from(linesStore);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    console.log('in handleDragEnd:', result);
+  const onDragEnd = (result) => {
+    const { destination, source } = result;
 
-    updateSavedLines(items);
-  }
-  const deleteLine = (line_id) =>{
-    let lineToDelete = line_id;
-    console.log('checking id in deleteLine', line_id);
-    console.log('sent request to delete line:', lineToDelete);
-    dispatch({type: 'TRIGGER_DELETE_LINE', payload: lineToDelete});
-  }
-  const deleteCreationLine = (id) =>{
-    let lineToDelete = id;
-    console.log('sent request to delete line:', lineToDelete);
-    dispatch({type: 'TRIGGER_DELETE_CREATION', payload: lineToDelete});
-  }
-  const setNewTitle = event => {
-    setTitle(event.target.value);
-  }
-  const setSaveSlot = event => {
-    setSave(event.target.value);
-  }
-  const addTitle = () => {
-     let newTitle = title;
-  }
-  const submitCreation = () => {
-    let newCreation = {
-      content_id: save,
-      user_id: userID,
+    // If user tries to drop in an unknown destination
+    if (!destination) return;
+
+    // if the user drags and drops back in the same position
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
     }
-    console.log('Creation submitted in Editor', newCreation);
-    dispatch({type: 'ADD_CREATION', payload: newCreation});
-  }
-  return (
-    <div id="savedLinesBox">
-      <h1 className="linesCap">SAVED LINES</h1>
-      {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
-      <section><div id="linesBox">
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="droppableIdForSavedLinesList">
-            {(provided) => (
-              <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
-                {linesStore.map((line, index) => {
-                  let savedLineKey = line.saved_id + 'a';
-                  return (
-                    <Draggable key={savedLineKey} draggableId={savedLineKey} index={index}>
-                    {(provided) =>
-                    (<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                    <li><button className="deleteButton" onClick={()=>{deleteLine(line.saved_id)}}>⊖</button>
-                    {line.fragment_text}</li></div>)}</Draggable>
-                  )
-                })}
-            </ul>
-          )}
-            </Droppable>
-          </DragDropContext>
-      </div></section>)}
-      <h1 className="linesCap">EDITOR</h1>
-      {editorStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
-      <section id="savedCreationBox"><div>
-        <h3>{title}</h3>
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="droppableIdForEditorList">
-          {(provided) => (
-            <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
-              {editorStore.map((line, index) => {
-                let lineKey = line.line_id + 'b';
-                return (
-                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) =>
-                  (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}>
-                  <li><button className="deleteButton" onClick={()=>{deleteCreationLine(line.line_id)}}>⊖</button>
-                  {line.fragment_text}</li></div>)}</Draggable>
-                )
-              })}
-            </ul>
-          )}
-          </Droppable>
-        </DragDropContext>
 
-      </div></section>)}
-    </div>
+    // If the user drops within the same column but in a different positoin
+    const sourceCol = state.columns[source.droppableId];
+    const destinationCol = state.columns[destination.droppableId];
+
+    if (sourceCol.id === destinationCol.id) {
+      const newColumn = reorderColumnList(
+        sourceCol,
+        source.index,
+        destination.index
+      );
+
+      const newState = {
+        ...state,
+        columns: {
+          ...state.columns,
+          [newColumn.id]: newColumn,
+        },
+      };
+      setState(newState);
+      return;
+  };
+
+    // If the user moves from one column to another
+    const startTaskIds = Array.from(sourceCol.taskIds);
+    const [removed] = startTaskIds.splice(source.index, 1);
+    const newStartCol = {
+      ...sourceCol,
+      taskIds: startTaskIds,
+    };
+
+    const endTaskIds = Array.from(destinationCol.taskIds);
+    endTaskIds.splice(destination.index, 0, removed);
+    const newEndCol = {
+      ...destinationCol,
+      taskIds: endTaskIds,
+    };
+
+    const newState = {
+      ...state,
+      columns: {
+        ...state.columns,
+        [newStartCol.id]: newStartCol,
+        [newEndCol.id]: newEndCol,
+      },
+    };
+
+    setState(newState);
+  };
+
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Flex
+        flexDir="column"
+        bg="main-bg"
+        minH="100vh"
+        w="full"
+        color="white-text"
+        pb="2rem"
+      >
+        <Flex py="4rem" flexDir="column" align="center">
+          <Heading fontSize="3xl" fontWeight={600}>
+            React Beautiful Drag and Drop
+          </Heading>
+          <Text fontSize="20px" fontWeight={600} color="subtle-text">
+            react-beautiful-dnd
+          </Text>
+        </Flex>
+
+        {/* <Flex justify="space-between" px="4rem">
+          {state.columnOrder.map((columnId) => {
+            const column = state.columns[columnId];
+            const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
+
+            return <Column key={column.id} column={column} tasks={tasks} />;
+          })}
+        </Flex> */}
+      </Flex>
+    </DragDropContext>
   );
+
+  const lyricsArray = linesStore.map((lyric, index) => {
+    return lyric.saved_id;
+  })
+
+  const lyricsObjects = linesStore.map((lyric, index) => {
+   let lyricObject = {
+      id: lyric.saved_id,
+      content: lyric.fragment_text
+    }
+    return lyricObject;
+  });
+
+  const initialData = {
+    lyrics: {lyricsObjects},
+    columns: {
+      'column-1': {
+        id: 'column-1',
+        title: 'Saved Lines',
+        lyricIDs: lyricsArray,
+      },
+      'column-2': {
+        id: 'column-2',
+        title: 'edit-column',
+        lyricIDs: [],
+      },
+    },
+    // Facilitate reordering of the columns
+    columnOrder: ["column-1", "column-2"]
+  }
+
 }
+
+  export default PageMerge;
