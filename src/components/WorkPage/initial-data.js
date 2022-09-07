@@ -35,9 +35,9 @@ function InitialDataBox(props) {
   const lyricsDataMap = linesStore.map((line, index) => {
     return (
       {
-        {line.saved_id} : {
-          id: {line.saved_id},
-          content: {line.fragment_text}
+        [line.saved_id] : {
+          id: line.saved_id,
+          content: line.fragment_text
         }
       }
     )
@@ -45,7 +45,7 @@ function InitialDataBox(props) {
 
    const initialData = {
     tasks: {
-      {lyricsDataMap}
+      ...lyricsDataMap
     },
     columns: {
       'column-1': {

@@ -6,9 +6,9 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import InitialDataBox from './initial-data';
 import Column from './Column';
 
-const Container = styled.div`
-  display: flex;
-`;
+// const Container = styled.div`
+//   display: flex;
+// `;
 
 class DragAndDrop extends React.Component {
   state = InitialDataBox();
@@ -96,6 +96,6 @@ class DragAndDrop extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<DragAndDrop />, document.getElementById('root'));
 
 export default DragAndDrop;
