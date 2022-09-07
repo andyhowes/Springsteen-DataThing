@@ -1,54 +1,48 @@
-import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
+import { Droppable } from 'react-beautiful-dnd';
+import Task from './task';
 
-const Column = ({column, lyrics}) => {
-  return (
-    <Flex rounded="3px" bg="column-bg" w="400px" h="620px" flexDir="column">
-      <Flex
-        align="center"
-        h="60px"
-        bg="column-header-bg"
-        rounded="3px 3px 0 0"
-        px="1.5rem"
-        mb="1.5rem"
-      >
-        <Text fontSize="17px" fontWeight={600} color="subtle-text">
-          {column.title}
-        </Text>
-      </Flex>
-      <Droppable droppableId={column.id}>
-        {(droppableProvided, droppableSnapshot) => (
-          <Flex
-            px="1.5rem"
-            flex={1}
-            flexDir="column"
-            ref={droppableProvided.innerRef}
-            {...droppableProvided.droppableProps}
-          >
-          {lyrics.map((lyric, index) => (
-            <Draggable key={lyric.id} draggableId={`${lyric.id}`} index={index}>
-              {(draggableProvided, draggableSnapshot) => (
-                <Flex
-                  mb="1rem"
-                  h="72px"
-                  bg="card-bg"
-                  rounded="3px"
-                  p="1.5rem"
-                  ref={draggableProvided.innerRef}
-                  {...draggableProvided.draggableProps}
-                  {...draggableProvided.dragHandleProps}
-                >
-                  <Text>{lyric.content}</Text>
-                </Flex>
-              )}
-            </Draggable>
-          ))}
-        </Flex>
-        )}
-      </Droppable>
-    </Flex>
-  )
+const Container = styled.div`
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  width: 220px;
+
+  display: flex;
+  flex-direction: column;
+`;
+const Title = styled.h3`
+  padding: 8px;
+`;
+const TaskList = styled.div`
+  padding: 8px;
+  transition: background-color 0.2s ease;
+  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
+  flex-grow: 1;
+  min-height: 100px;
+`;
+
+export default class Column extends React.Component {
+  render() {
+    return (
+      <Container>
+        <Title>{this.props.column.title}</Title>
+        <Droppable droppableId={this.props.column.id}>
+          {(provided, snapshot) => (
+            <TaskList
+              innerRef={provided.innerRef}
+              {...provided.droppableProps}
+              isDraggingOver={snapshot.isDraggingOver}
+            >
+              {this.props.tasks.map((task, index) => (
+                <Task key={task.id} task={task} index={index} />
+              ))}
+              {provided.placeholder}
+            </TaskList>
+          )}
+        </Droppable>
+      </Container>
+    );
+  }
 }
-
-export default Column;
