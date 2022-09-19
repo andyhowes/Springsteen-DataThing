@@ -10,7 +10,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 function Behemoth(props) {
   const [savedLines, updateSavedLines] = useState('');
-  //const [items, setItems] = useState('');
+  const [items, setItems] = useState('');
   const [title, setTitle] = useState('');
   //const [items, setItems] = useState('');
   const [lyrics, updateLyrics] = useState('');
@@ -38,7 +38,7 @@ function Behemoth(props) {
 
   const arrayForLines = Array.from(linesStore);
 
- //const [lines, updateLines] = useState(arrayForLines);
+ // const [lines, updateLines] = useState(arrayForLines);
 
  const columnsFromBackend = {
   [uuid()]: {
@@ -47,15 +47,11 @@ function Behemoth(props) {
     },
   [uuid()]: {
     name: "Editor",
-    items: [{
-      fragment_id: 0,
-      fragment_text: "____",
-      saved_id: '123456'
-      }]
+    items: []
     }
   };
 
-  //const [rows, setRows] = useState(arrayForLines);
+  const [rows, setRows] = useState(arrayForLines);
   const [columns, setColumns] = useState(columnsFromBackend);
 
   const handleOnDragEnd = (result, columns, setColumns) => {
@@ -132,78 +128,58 @@ function Behemoth(props) {
     dispatch({type: 'ADD_CREATION', payload: newCreation});
   }
   return (
-    <DragDropContext
-        onDragEnd={result => handleOnDragEnd(result, columns, setColumns)}
-    >
-        {Object.entries(columns).map(([columnId, column], index) => {
-          return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center"
-              }}
-              key={columnId}
-            >
-              <h2>{column.name}</h2>
-              <div style={{ margin: 8 }}>
-                <Droppable droppableId={columnId} key={columnId}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "lightgrey",
-                          padding: 4,
-                          width: 250,
-                          minHeight: 500
-                        }}
-                      >
-                        {column.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item.saved_id + 'rac'}
-                              draggableId={item.saved_id + 'bbc'}
-                              index={index + 11111}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={{
-                                      userSelect: "none",
-                                      padding: 16,
-                                      margin: "0 0 8px 0",
-                                      minHeight: "50px",
-                                      backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
-                                      color: "white",
-                                      ...provided.draggableProps.style
-                                    }}
-                                  >
-                                    {item.fragment_text}
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
-              </div>
-            </div>
-          );
-        })}
-      </DragDropContext>
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+    <div id="savedLinesBox">
+      <h1 className="linesCap">SAVED LINES</h1>
+      {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
+      <section><div id="linesBox">
+
+          <Droppable droppableId="droppableIdForSavedLinesList">
+            {(provided) => (
+              <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
+                {rows.map((line, index) => {
+                  let savedLineKey = line.saved_id + 'a';
+                  return (
+                    <Draggable key={savedLineKey} draggableId={savedLineKey} index={index}>
+                    {(provided) =>
+                    (<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                    <li><button className="deleteButton" onClick={()=>{deleteLine(line.saved_id)}}>⊖</button>
+                    {line.fragment_text}</li></div>)}</Draggable>
+                  )
+                })}
+            </ul>
+          )}
+            </Droppable>
+
+         <div id="creationBox">
+            <h1 className="linesCap">EDITOR</h1>
+      {editorStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
+      <section id="savedCreationBox"><div>
+        <h3>{title}</h3>
+
+          <Droppable droppableId="droppableIdForEditorList">
+          {(provided) => (
+            <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
+              {editorStore.map((line, index) => {
+                let lineKey = line.line_id + 'b';
+                return (
+                  <Draggable key={lineKey} draggableId={lineKey} index={index}>{(provided) =>
+                  (<div ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}>
+                  <li><button className="deleteButton" onClick={()=>{deleteCreationLine(line.line_id)}}>⊖</button>
+                  {line.fragment_text}</li></div>)}</Draggable>
+                )
+              })}
+            </ul>
+          )}
+          </Droppable>
+
+      </div></section>)}
+      </div>
+
+      </div></section>)}
+
+    </div>
+    </DragDropContext>
   );
 }
 
