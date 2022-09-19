@@ -24,11 +24,11 @@ function WorkPage() {
   const {lines, setLines} = useState(arrayForLines);
 
   const columnsFromBackend = {
-    [uuid()]: {
+    savedColumn: {
       name: "Saved Lines",
       items: arrayForLines
     },
-    [uuid()]: {
+    savedEditor: {
       name: "Editor",
       items: [{
       fragment_id: 0,
@@ -76,6 +76,10 @@ function WorkPage() {
       });
     }
   };
+
+  const saveText = () => {
+    console.log(columns.savedEditor.items);
+  }
 
   return (
     <div>
@@ -129,7 +133,7 @@ function WorkPage() {
                                           userSelect: "none",
                                           padding: 16,
                                           margin: "0 0 8px 0",
-                                          minHeight: "50px",
+                                          minHeight: "40px",
                                           backgroundColor: snapshot.isDragging
                                             ? "#263B4A"
                                             : "#456C86",
@@ -151,6 +155,7 @@ function WorkPage() {
                       }}
                     </Droppable>
                   </div>
+                  <button onClick={saveText}>Save</button>
                 </div>
               );
             })}
