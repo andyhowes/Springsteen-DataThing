@@ -43,7 +43,7 @@ function LinesList() {
           {linesStore.map(line => {
 
             return (
-              <tbody><tr className="lineSingle" key={(line.fragment_id)}><td>{line.album_name}</td><td>{line.song_name}</td><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="addButton" onClick={()=>{addLine(userStore.id, line.fragment_id)}}>⨁</button></td></tr></tbody>
+              <tbody key={(line.fragment_id)}><tr className="lineSingle" ><td>{line.album_name}</td><td>{line.song_name}</td><td>{line.fragment_text}</td><td>{line.rhyme}</td><td><button className="addButton" onClick={()=>{addLine(userStore.id, line.fragment_id)}}>⨁</button></td></tr></tbody>
             )
           })}
         </table>
