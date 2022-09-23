@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import uuid from "uuid/v4";
+//import uuid from "uuid/v4";
 import './WorkPage.css';
 
 
@@ -22,6 +22,7 @@ function WorkPage() {
   const arrayForLines = Array.from(linesStore);
 
   const {lines, setLines} = useState(arrayForLines);
+  const [title, setTitle] = useState('');
 
   const columnsFromBackend = {
     savedColumn: {
@@ -37,6 +38,10 @@ function WorkPage() {
       }]
     }
   };
+
+  const setNewTitle = event => {
+    setTitle(event.target.value);
+  }
 
   const [columns, setColumns] = useState(columnsFromBackend);
 
@@ -77,8 +82,21 @@ function WorkPage() {
     }
   };
 
-  const saveText = () => {
-    console.log(columns.savedEditor.items);
+  // const saveText = () => {
+  //   console.log(columns.savedEditor.items);
+  // }
+
+  //let songRaw = lyrics.join('\n');
+
+  const submitText = () => {
+    let submitPackage = {
+      titleID: Math.floor(Math.random() * 100000),
+      newTitle: title,
+     lyrics: columns.savedEditor.items,
+     user_id: linesStore.user_id
+    }
+    console.log('sending submission of title package', submitPackage);
+    dispatch({type: 'SUBMIT_TITLE_PACKAGE', payload: submitPackage});
   }
 
   return (
@@ -99,6 +117,7 @@ function WorkPage() {
                   key={columnId}
                 >
                   <h2>{column.name}</h2>
+                  {(column.name === 'Editor' ? <input id="titleInput" onChange={setNewTitle} placeholder="Song Title"></input> : <p></p>)}
                   <div style={{ margin: 8 }}>
                     <Droppable droppableId={columnId} key={columnId}>
                       {(provided, snapshot) => {
@@ -155,7 +174,7 @@ function WorkPage() {
                       }}
                     </Droppable>
                   </div>
-                  <button onClick={saveText}>Save</button>
+                  {(column.name === 'Editor') ? <button onClick={submitText}>Save</button> : <p></p>}
                 </div>
               );
             })}
