@@ -13,6 +13,8 @@ import deleteCreationSaga from './deleteCreation.saga';
 import deleteSavedLineSaga from './deleteSavedLine.saga';
 //import addTitleSaga from './addTitle.saga';
 import addCreationSaga from './addCreation.saga';
+import creationsSaga from './creations.saga';
+import userSong from './userSong.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -37,5 +39,7 @@ export default function* rootSaga() {
     deleteSavedLineSaga(),
     //addTitleSaga(),
     addCreationSaga(),
+    creationsSaga(),
+    userSong(),
   ]);
 }

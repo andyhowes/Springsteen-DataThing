@@ -152,10 +152,10 @@ function WorkPage() {
                                           userSelect: "none",
                                           padding: 16,
                                           margin: "0 0 8px 0",
-                                          minHeight: "40px",
+                                          minHeight: "30px",
                                           backgroundColor: snapshot.isDragging
-                                            ? "#263B4A"
-                                            : "#456C86",
+                                            ? "#c85454"
+                                            : "SteelBlue",
                                           color: "white",
                                           ...provided.draggableProps.style
                                         }}
