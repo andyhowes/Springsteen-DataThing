@@ -1,0 +1,43 @@
+.linesCap {
+  font-family: 'LibreFranklinBold';
+}
+
+#linesBox {
+  height: 25em;
+  overflow:scroll;
+  width: 55%;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+#songHeader {
+  width: 25%;
+}
+
+#albumHeader {
+  width: 17%;
+}
+
+.addButton {
+  font-size:large;
+  text-align: center;
+  padding-left: 20.5%;
+  border: none;
+  background: none;
+}
+
+.addButton:hover {
+  color: #B44C4B;
+}
+
+.addButton:active {
+  font-size: larger;
+  color: red;
+  padding-left: 20%;
+}
+
+.container {
+  width: 60%;
+}

@@ -57,12 +57,12 @@ function SavedLines(props) {
             {(provided) => (
               <ul id="lineList" {...provided.droppableProps} ref={provided.innerRef}>
                 {lines.map((line, index) => {
-                  let savedLineKey = line.saved_id + 'a';
+                  let savedLineKey = index + 'a';
                   return (
                     <Draggable key={savedLineKey} draggableId={savedLineKey} index={index}>
                     {(provided) =>
-                    (<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                    <li><button className="deleteButton" onClick={()=>{deleteLine(line.saved_id)}}>⊖</button>
+                    (<div key={index + 'div'} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                    <li key={index +'li'}><button className="deleteButton" onClick={()=>{deleteLine(line.saved_id)}}>⊖</button>
                     {line.fragment_text}</li></div>)}</Draggable>
                   )
                 })}

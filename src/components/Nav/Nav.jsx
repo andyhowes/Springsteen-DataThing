@@ -33,6 +33,10 @@ function Nav() {
               Song Lines
             </Link>
 
+            <Link className="navLink" to="/creations">
+              Creations
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

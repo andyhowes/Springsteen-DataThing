@@ -7,7 +7,7 @@ import './CreationList.css';
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function EditorPane() {
+function CreationPane() {
 
   const [title, setTitle] = useState('');
 
@@ -72,4 +72,4 @@ function EditorPane() {
   );
 }
 
-export default EditorPane;
+export default CreationPane;

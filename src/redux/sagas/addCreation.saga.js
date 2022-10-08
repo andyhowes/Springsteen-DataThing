@@ -11,7 +11,7 @@ function* addCreation(action) {
 }
 
 function* addCreationSaga() {
-  yield takeLatest('ADD_CREATION', addCreation);
+  yield takeLatest('SUBMIT_TITLE_PACKAGE', addCreation);
 }
 
 export default addCreationSaga;

@@ -23,6 +23,11 @@ import SongOfLines from '../SongOfLines/SongOfLines';
 import SavedLines from '../SavedLines/SavedLines';
 import WorkPage from '../WorkPage/WorkPage';
 import EditorPane from '../EditorPane/EditorPane';
+import Behemoth from '../WorkPage/Behemoth';
+import DragAndDrop from '../WorkPage/DragAndDrop';
+import Creations from '../Creations/Creations';
+import UserSong from '../UserSong/UserSong';
+//import CreationPane from '../CreationPane/CreationPane';
 
 import './App.css';
 
@@ -58,13 +63,13 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <Details />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact
@@ -94,7 +99,7 @@ function App() {
             }
           </Route>
 
-          <Route
+          {/* <Route
           exact
           path="/song_of_lines/:id"
           >
@@ -106,7 +111,7 @@ function App() {
 
               <LandingPage />
             } */}
-          </Route>
+          {/* </Route> */}
 
           <Route
           exact
@@ -152,6 +157,20 @@ function App() {
 
           <Route
           exact
+          path="/behemoth"
+          >
+            <Behemoth />
+            {/* {user.id ?
+
+              <Redirect to="/user" />
+              :
+
+              <LandingPage />
+            } */}
+          </Route>
+
+          <Route
+          exact
           path="/lines"
           >
             <LinesList />
@@ -173,6 +192,13 @@ function App() {
 
           <Route
           exact
+          path="/draganddrop"
+          >
+            <DragAndDrop />
+          </Route>
+
+          <Route
+          exact
           path="/editor"
           >
             <EditorPane />
@@ -184,6 +210,21 @@ function App() {
               <LandingPage />
             } */}
           </Route>
+
+          <Route
+          exact
+          path="/creations"
+          >
+            <Creations />
+          </Route>
+
+          <Route
+          exact
+          path="/usersong/:id"
+          >
+            <UserSong />
+          </Route>
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

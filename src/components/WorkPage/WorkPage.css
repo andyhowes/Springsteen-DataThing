@@ -102,3 +102,7 @@ li {
   float: right;
   width:max-content;
 }
+
+.columnDiv {
+  overflow: scroll;
+}
