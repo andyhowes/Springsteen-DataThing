@@ -2,10 +2,10 @@
   font-family: 'LibreFranklinBold';
 }
 
-#linesBox {
+#songBox {
   height: 25em;
   overflow:scroll;
-  width: 55%;
+  width:max-content;
 }
 
 table, th, td {
