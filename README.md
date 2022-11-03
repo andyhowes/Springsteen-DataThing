@@ -25,4 +25,10 @@ The app was created as my final solo project for Prime Digital Academy.
 - [Found Poetry on Wikipedia](https://en.wikipedia.org/wiki/Found_poetry)
 - [Definition of Collage Poetry from Poetry.com](https://www.poetryfoundation.org/learn/glossary-terms/collage)
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+![Home Page](documentation/images/home.png)
+
+![Song Display](documentation/images/lyrics.png)
+
+![Lines List](documentation/images/lineslist.png)
+
+![Editor](documentation/images/editor.png)
