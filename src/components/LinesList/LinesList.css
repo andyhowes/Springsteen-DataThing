@@ -3,9 +3,13 @@
 }
 
 #linesBox {
-  height: 25em;
+  height: 35em;
   overflow:scroll;
-  width: 55%;
+  width: fit-content;
+}
+
+#linesList {
+  width: fit-content;
 }
 
 table, th, td {
@@ -19,6 +23,11 @@ table, th, td {
 #albumHeader {
   width: 17%;
 }
+
+#lyricHeader {
+  width: 40%;
+}
+
 
 .addButton {
   font-size:large;
@@ -38,6 +47,3 @@ table, th, td {
   padding-left: 20%;
 }
 
-.container {
-  width: 60%;
-}

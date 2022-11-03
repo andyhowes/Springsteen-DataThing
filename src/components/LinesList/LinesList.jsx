@@ -30,12 +30,12 @@ function LinesList() {
       <h1 className="linesCap">LINES</h1>
       {linesStore.length === 0 || userStore.length === 0? (<p>...Loading...</p>) : (
       <section><div id="linesBox">
-        <table id="lineList">
+        <table id="linesList">
           <thead>
             <tr>
               <th id="albumHeader">Album</th>
               <th id="songHeader">Song</th>
-              <th>Lyric</th>
+              <th id="lyricHeader">Lyric</th>
               <th>Rhyme</th>
               <th>Add</th>
             </tr>
