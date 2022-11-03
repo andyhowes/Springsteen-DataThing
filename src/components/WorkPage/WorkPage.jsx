@@ -15,7 +15,7 @@ function WorkPage() {
   useEffect(() => {
     setTimeout(() => {
       dispatch({type: 'FETCH_SAVED_LINES', userID});
-    }, 1000)
+    }, 3000)
   }, []);
 
   const linesStore = useSelector(store => store.savedLines);
@@ -101,7 +101,7 @@ function WorkPage() {
 
   return (
     <div>
-      { (linesStore.length === 0) ? (<p>...Loading...</p>) :
+      { (!linesStore) ? (<p>...Loading...</p>) :
         (<div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
           <DragDropContext
             onDragEnd={result => onDragEnd(result, columns, setColumns)}
