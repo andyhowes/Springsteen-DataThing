@@ -23,8 +23,6 @@ import SongOfLines from '../SongOfLines/SongOfLines';
 import SavedLines from '../SavedLines/SavedLines';
 import WorkPage from '../WorkPage/WorkPage';
 import EditorPane from '../EditorPane/EditorPane';
-import Behemoth from '../WorkPage/Behemoth';
-import DragAndDrop from '../WorkPage/DragAndDrop';
 import Creations from '../Creations/Creations';
 import UserSong from '../UserSong/UserSong';
 //import CreationPane from '../CreationPane/CreationPane';
@@ -157,20 +155,6 @@ function App() {
 
           <Route
           exact
-          path="/behemoth"
-          >
-            <Behemoth />
-            {/* {user.id ?
-
-              <Redirect to="/user" />
-              :
-
-              <LandingPage />
-            } */}
-          </Route>
-
-          <Route
-          exact
           path="/lines"
           >
             <LinesList />
@@ -188,13 +172,6 @@ function App() {
           path="/workpage"
           >
             <WorkPage />
-          </Route>
-
-          <Route
-          exact
-          path="/draganddrop"
-          >
-            <DragAndDrop />
           </Route>
 
           <Route
