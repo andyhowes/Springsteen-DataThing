@@ -6,6 +6,9 @@ The Bruce Springsteen Song Reorderer (BSSR) allows a user to take lyrics from Br
 
 The writing process here is a form of Collage Poetry. It is similar to magnetic poetry, Exquisite Corpse (a game for generating poetry text with contributions from multiple poets), and other poetic practices. Like magnetic poetry, it is meant to be a low-stakes way to be creative and hopefully to create appealing and interesting texts.
 
+My wife, Katie Howes, is a poet — she indulged me by writing a poem using this process. Here it is: <br>
+[I'm On Fire — Katie Howes](https://github.com/andyhowes/Springsteen-DataThing/blob/dd6154d0e4f2706f5eb1ef4962160c462f97386f/documentation/katiepoem.pdf)
+
 The app was created as my final solo project for Prime Digital Academy. 
 
 ## Techs Used
