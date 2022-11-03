@@ -28,7 +28,7 @@ function UserSong(props) {
   return (
 
     <div className="container">
-      {userSong.length === 0 ? (<p>...loading...</p>) :
+      {!userSong.length ? (<p>...loading...</p>) :
       (<section><h1 className="songCap">{userSong.title}</h1>
       <div id="songBox">
         {userSong.map(lyric => {
